@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/png" href="midia/logo-agafarma.png">
+<title>AgaClube Help — central de ajuda do painel Agafarma</title>
+<meta name="description" content="Como fazer no painel AgaClube: campanhas de desconto e cadastro de produtos, passo a passo.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --amarelo:#FFCC00; --amarelo-esc:#E1C015; --navy:#092D46; --azul:#006EBA;
+  --azul-claro:#2D87C6; --cinza:#345266; --cinza-2:#6C8093; --papel:#F4F7FA;
+  --linha:#DEE6ED; --sombra:0 1px 2px rgba(9,45,70,.05);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:104px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+body{font-family:Inter,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--papel);
+     color:var(--cinza);-webkit-font-smoothing:antialiased;line-height:1.55}
+a{color:var(--azul);text-decoration:none}
+button{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--amarelo);outline-offset:3px;border-radius:6px}
+[hidden]{display:none!important}
+
+.faixa{height:6px;display:flex}
+.faixa i{display:block;height:100%}
+.faixa i:first-child{width:22%;background:var(--amarelo)}
+.faixa i:last-child{width:78%;background:var(--azul)}
+header{position:sticky;top:0;z-index:30;background:#fff;border-bottom:1px solid var(--linha)}
+.barra{max-width:1200px;margin:0 auto;padding:15px 32px;display:flex;align-items:center;gap:18px}
+.marca{width:38px;height:38px;flex:none;border-radius:9px;display:block}
+.nome{font-size:18px;font-weight:800;color:var(--navy);line-height:1.1;letter-spacing:-.01em}
+.nome span{display:block;font-size:12.5px;font-weight:600;color:var(--cinza-2)}
+.setor{margin-left:auto;display:block;height:30px;width:auto;max-width:220px;
+       object-fit:contain}
+.voltar{margin-left:auto;font-size:14.5px;font-weight:600;background:none;border:0;cursor:pointer;
+        color:var(--azul);padding:8px 2px}
+.voltar:hover{color:var(--navy)}
+
+/* ---------------- home ---------------- */
+.home{max-width:1200px;margin:0 auto;padding:0 32px 90px}
+.capa{background:var(--navy);border-radius:22px;padding:66px 56px 56px;margin-top:36px;
+      position:relative;overflow:hidden}
+.capa:before{content:"";position:absolute;right:-140px;top:-170px;width:430px;height:430px;
+             border-radius:50%;background:rgba(255,204,0,.08)}
+.capa:after{content:"";position:absolute;left:-90px;bottom:-160px;width:320px;height:320px;
+            border-radius:50%;background:rgba(0,110,186,.22)}
+.capa > *{position:relative}
+.capa h1{font-size:42px;line-height:1.08;font-weight:800;color:#fff;letter-spacing:-.028em;
+         max-width:18ch;margin-bottom:12px}
+.capa .lead{font-size:18px;color:#9DB2C4;max-width:56ch;margin-bottom:30px}
+
+.campo{position:relative;max-width:640px}
+.campo svg{position:absolute;left:20px;top:50%;transform:translateY(-50%);width:20px;height:20px;
+           color:var(--cinza-2)}
+.campo input{width:100%;padding:19px 20px 19px 52px;border:0;border-radius:14px;font:inherit;
+             font-size:16.5px;color:var(--navy);box-shadow:0 10px 34px rgba(0,0,0,.16)}
+.campo input::placeholder{color:var(--cinza-2)}
+.chips{display:flex;flex-wrap:wrap;gap:9px;margin-top:20px;align-items:center}
+.chips .rot{font-size:13.5px;color:#7E93A6;margin-right:3px}
+.chips button{background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.18);
+  color:#DCE6EE;font-size:13.5px;padding:8px 14px;border-radius:999px;cursor:pointer}
+.chips button:hover{background:rgba(255,255,255,.16);color:#fff}
+
+.res{max-width:640px;margin-top:22px;background:#fff;border:1px solid var(--linha);
+     border-radius:14px;overflow:hidden;box-shadow:0 14px 40px rgba(9,45,70,.13)}
+.res button{display:flex;width:100%;gap:14px;align-items:center;text-align:left;background:none;
+  border:0;border-bottom:1px solid var(--linha);padding:15px 20px;cursor:pointer}
+.res button:last-child{border-bottom:0}
+.res button:hover{background:var(--papel)}
+.res .q{font-size:15.5px;color:var(--navy);font-weight:600;flex:1}
+.res .g{font-size:12px;font-weight:700;color:var(--cinza-2);white-space:nowrap}
+.res .nada{padding:22px 20px;font-size:15px;color:var(--cinza-2)}
+
+.secao{margin-top:56px}
+.secao h2{font-size:15px;font-weight:800;color:var(--navy);margin-bottom:4px}
+.secao p.desc{font-size:15.5px;color:var(--cinza-2);margin-bottom:22px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:22px}
+.card{background:#fff;border:1px solid var(--linha);border-radius:18px;padding:32px 34px 28px;
+      box-shadow:var(--sombra);text-align:left;cursor:pointer;display:flex;flex-direction:column;
+      border-top:5px solid var(--azul)}
+.card.amar{border-top-color:var(--amarelo)}
+.card.verde{border-top-color:#10B981}
+.card:hover{border-color:#C7D6E2;box-shadow:0 8px 26px rgba(9,45,70,.09)}
+.card .ico{width:46px;height:46px;border-radius:12px;background:var(--papel);color:var(--azul);
+  display:flex;align-items:center;justify-content:center;margin-bottom:18px}
+.card.amar .ico{color:#B08C00;background:#FFF8E0}
+.card.verde .ico{color:#047857;background:#D1FAE5}
+.card .ico svg{width:24px;height:24px}
+.card h3{font-size:22px;font-weight:800;color:var(--navy);letter-spacing:-.02em;margin-bottom:7px}
+.card p{font-size:15.5px;color:var(--cinza-2);margin-bottom:18px}
+.card ul{list-style:none;margin-bottom:20px}
+.card li{font-size:14.5px;color:var(--cinza);padding-left:20px;position:relative;margin-bottom:7px}
+.card li:before{content:"";position:absolute;left:0;top:9px;width:6px;height:6px;border-radius:50%;
+                background:var(--azul-claro)}
+.card .pe{margin-top:auto;display:flex;align-items:center;justify-content:space-between;
+  border-top:1px solid var(--linha);padding-top:16px}
+.card .qtd{font-size:13.5px;font-weight:700;color:var(--cinza-2)}
+.card .abrir{font-size:15px;font-weight:700;color:var(--azul)}
+
+/* ---------------- guia ---------------- */
+.wrap{max-width:1200px;margin:0 auto;padding:0 32px;display:grid;
+      grid-template-columns:262px minmax(0,1fr);gap:56px;align-items:start}
+nav.lado{position:sticky;top:92px;padding:36px 0 60px;max-height:calc(100vh - 92px);overflow-y:auto}
+nav.lado h3{font-size:13px;font-weight:800;color:var(--navy);margin-bottom:10px}
+nav.lado ol{list-style:none;border-left:2px solid var(--linha)}
+nav.lado li a{display:block;padding:6px 0 6px 14px;margin-left:-2px;font-size:14px;
+  color:var(--cinza-2);border-left:2px solid transparent;line-height:1.35}
+nav.lado li a:hover{color:var(--navy)}
+nav.lado li a.ativo{color:var(--navy);font-weight:600;border-left-color:var(--amarelo)}
+nav.lado li a em{font-style:normal;font-weight:600;margin-right:7px}
+main{padding:40px 0 96px;max-width:840px}
+.titulo-guia{border-bottom:2px solid var(--linha);padding-bottom:18px;margin-bottom:10px}
+.titulo-guia h2{font-size:32px;font-weight:800;color:var(--navy);letter-spacing:-.025em}
+.titulo-guia p{font-size:16.5px;color:var(--cinza-2);margin-top:6px}
+.migalha{font-size:14px;color:var(--cinza-2);margin-bottom:14px}
+.migalha button{background:none;border:0;cursor:pointer;color:var(--azul);font-weight:600}
+
+.passo{padding:38px 0;border-bottom:1px solid var(--linha);scroll-margin-top:104px}
+.passo:last-child{border-bottom:0}
+.cabeca{display:flex;gap:18px;align-items:flex-start;margin-bottom:20px}
+.cabeca .num{width:44px;height:44px;flex:none;border-radius:50%;background:var(--amarelo);
+   color:var(--navy);font-size:18px;font-weight:800;display:flex;align-items:center;
+   justify-content:center;margin-top:2px}
+.passo h3{font-size:26px;font-weight:800;color:var(--navy);letter-spacing:-.02em;line-height:1.2}
+.passo .sub{font-size:15.5px;color:var(--cinza-2);margin-top:3px}
+.instr{background:#fff;border:1px solid var(--linha);border-left:6px solid var(--azul);
+       border-radius:12px;padding:22px 26px;box-shadow:var(--sombra)}
+.instr h4{font-size:17px;font-weight:700;color:var(--navy);margin-bottom:8px}
+.instr p{font-size:16px}
+.instr ul{list-style:none;margin-top:2px}
+.instr li{font-size:16px;padding-left:22px;position:relative;margin-bottom:7px}
+.instr li:last-child{margin-bottom:0}
+.instr li:before{content:"";position:absolute;left:0;top:10px;width:7px;height:7px;
+                 border-radius:50%;background:var(--azul-claro)}
+.instr b{color:var(--navy);font-weight:700}
+.instr .nota{margin-top:12px;font-size:15px;color:var(--cinza-2)}
+.aviso{margin-top:14px;background:#FFF8E0;border:1px solid #F0DFA0;
+       border-left:6px solid var(--amarelo-esc);border-radius:12px;padding:18px 22px;
+       display:flex;gap:13px}
+.aviso .ic{font-weight:800;color:#9A7A08;font-size:17px;line-height:1.5}
+.aviso p{font-size:15.5px;color:#5C4A10}
+.aviso b{color:#3F3208;font-weight:700}
+
+/* ---------------- mídia do passo ---------------- */
+.midia{margin-top:20px}
+.midia:empty{display:none}
+.rotulo{display:flex;align-items:center;gap:10px;margin-bottom:10px;font-size:13px;
+        font-weight:700;color:var(--cinza-2)}
+.rotulo:before{content:"";width:18px;height:2px;background:var(--amarelo);flex:none}
+.quadro{border:1px solid var(--linha);border-radius:14px;overflow:hidden;background:#fff;
+        box-shadow:var(--sombra)}
+.quadro video{display:block;width:100%;aspect-ratio:16/9;background:#0B1F2E}
+.quadro img{display:block;width:100%;background:#fff}
+.legenda{font-size:13.5px;color:var(--cinza-2);margin-top:9px}
+.legenda b{color:var(--cinza);font-weight:600}
+.pendente{border:1px dashed #C7D6E2;border-radius:14px;background:#fff;padding:22px 24px;
+          display:flex;gap:13px;align-items:flex-start}
+.pendente .tag{flex:none;background:var(--papel);color:var(--cinza-2);font-size:11.5px;
+  font-weight:700;letter-spacing:.05em;padding:5px 10px;border-radius:6px;margin-top:1px}
+.pendente p{font-size:15px;color:var(--cinza-2)}
+
+/* ---------------- material de apoio (Canva) ---------------- */
+.apoio{margin:6px 0 12px;background:#fff;border:1px solid var(--linha);border-radius:16px;
+       padding:24px 26px 22px;box-shadow:var(--sombra)}
+.apoio-topo{display:flex;gap:18px;align-items:center;justify-content:space-between;
+            flex-wrap:wrap;margin-bottom:16px}
+.apoio-topo h3{font-size:18px;font-weight:800;color:var(--navy);letter-spacing:-.015em}
+.apoio-topo p{font-size:15px;color:var(--cinza-2);margin-top:2px}
+.apoio-link{flex:none;font-size:14.5px;font-weight:700;color:var(--azul);border:1px solid var(--linha);
+            border-radius:10px;padding:10px 16px;background:var(--papel)}
+.apoio-link:hover{color:var(--navy);border-color:#C7D6E2}
+.apoio-frame{position:relative;width:100%;aspect-ratio:16/9;border-radius:12px;overflow:hidden;
+             border:1px solid var(--linha);background:var(--papel)}
+.apoio-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0;display:block}
+.apoio-nota{font-size:13.5px;color:var(--cinza-2);margin-top:11px}
+
+/* ---------------- checklist de publicação ---------------- */
+.check{margin-top:40px;background:#fff;border:1px solid var(--linha);border-top:5px solid var(--amarelo);
+       border-radius:16px;padding:28px 30px 24px;box-shadow:var(--sombra);scroll-margin-top:104px}
+.check-topo{display:flex;gap:20px;align-items:flex-start;justify-content:space-between;
+            flex-wrap:wrap;margin-bottom:18px}
+.check-topo h3{font-size:22px;font-weight:800;color:var(--navy);letter-spacing:-.02em}
+.check-topo p{font-size:15px;color:var(--cinza-2);margin-top:5px;max-width:52ch}
+.check-estado{flex:none;display:flex;align-items:center;gap:12px}
+.check-estado strong{font-size:15px;font-weight:800;color:var(--navy);background:var(--papel);
+  border:1px solid var(--linha);border-radius:999px;padding:7px 14px;white-space:nowrap}
+.check-estado button{background:none;border:0;cursor:pointer;font-size:14px;font-weight:600;
+  color:var(--cinza-2);padding:6px 2px}
+.check-estado button:hover{color:var(--azul)}
+.check-lista{list-style:none;border-top:1px solid var(--linha)}
+.check-lista li{display:flex;align-items:flex-start;gap:14px;padding:13px 2px;
+                border-bottom:1px solid var(--linha)}
+.check-lista label{display:flex;gap:13px;align-items:flex-start;flex:1;cursor:pointer}
+.check-lista input{appearance:none;-webkit-appearance:none;flex:none;width:22px;height:22px;
+  margin-top:1px;border:2px solid #B9C8D6;border-radius:6px;background:#fff;cursor:pointer;
+  position:relative}
+.check-lista input:checked{background:var(--amarelo);border-color:var(--amarelo-esc)}
+.check-lista input:checked:after{content:"";position:absolute;left:6px;top:1px;width:6px;height:12px;
+  border:solid var(--navy);border-width:0 3px 3px 0;transform:rotate(45deg)}
+.check-lista span{font-size:16px;color:var(--cinza)}
+.check-lista b{color:var(--navy);font-weight:700}
+.check-lista input:checked ~ span{color:var(--cinza-2);text-decoration:line-through}
+.check-lista .ver{flex:none;background:none;border:0;cursor:pointer;font-size:13.5px;
+  font-weight:700;color:var(--azul);white-space:nowrap;padding:2px 0;margin-top:2px}
+.check-lista .ver:hover{color:var(--navy)}
+.check-nota{font-size:14.5px;color:var(--cinza-2);margin-top:16px}
+nav.lado li.fixo{margin-top:8px}
+nav.lado li.fixo a{font-weight:600;color:var(--navy)}
+
+/* ---------------- baixar manual ---------------- */
+.manual{margin-top:40px;background:var(--navy);border-radius:16px;padding:28px 32px;
+  display:flex;align-items:center;justify-content:space-between;gap:26px;flex-wrap:wrap}
+.manual h3{font-size:19px;font-weight:800;color:#fff;letter-spacing:-.015em}
+.manual p{font-size:15px;color:#9DB2C4;margin-top:5px;max-width:52ch}
+.manual .baixar{flex:none;display:inline-flex;align-items:center;gap:10px;background:var(--amarelo);
+  color:var(--navy);font-size:15.5px;font-weight:700;padding:14px 24px;border-radius:12px}
+.manual .baixar svg{width:19px;height:19px}
+.manual .baixar:hover{background:#FFD733}
+@media (max-width:1000px){
+  .manual{padding:22px 20px;gap:18px}
+  .manual .baixar{width:100%;justify-content:center}
+}
+
+.destaque{animation:pisca 1.6s ease}
+@keyframes pisca{0%,60%{background:#FFF8E0}100%{background:transparent}}
+@media (prefers-reduced-motion:reduce){.destaque{animation:none}}
+
+footer.pe-pg{border-top:1px solid var(--linha);background:#fff}
+footer.pe-pg div{max-width:1200px;margin:0 auto;padding:26px 32px;font-size:14px;
+                 color:var(--cinza-2);display:flex;gap:18px;flex-wrap:wrap}
+
+.indice{border:1px solid var(--linha);background:#fff;border-radius:12px;padding:0 18px;
+        box-shadow:var(--sombra)}
+.indice > summary{list-style:none;cursor:pointer;padding:15px 0;font-size:15px;font-weight:700;
+  color:var(--navy);display:flex;align-items:center;gap:9px}
+.indice > summary::-webkit-details-marker{display:none}
+.indice > summary:after{content:"";width:9px;height:9px;margin-left:auto;
+  border-right:2px solid var(--cinza-2);border-bottom:2px solid var(--cinza-2);
+  transform:rotate(45deg) translateY(-3px)}
+.indice[open] > summary:after{transform:rotate(-135deg) translateY(-1px)}
+.indice .conteudo{padding-bottom:16px}
+
+@media (max-width:1000px){
+  .barra{padding:14px 20px}
+  .home{padding:0 20px 70px}
+  .capa{padding:40px 26px 34px;margin-top:22px;border-radius:18px}
+  .capa h1{font-size:30px}
+  .campo input{padding:16px 16px 16px 46px;font-size:16px}
+  .cards{grid-template-columns:1fr}
+  .wrap{grid-template-columns:1fr;gap:0;padding:0 20px}
+  nav.lado{position:static;max-height:none;padding:22px 0 0;overflow:visible}
+  nav.lado ol{display:flex;flex-wrap:wrap;gap:4px 12px;border:0}
+  nav.lado li a{padding:4px 0;border:0}
+  main{padding:26px 0 70px}
+  .titulo-guia h2{font-size:25px}
+  .passo h3{font-size:21px}
+  .apoio{padding:20px 18px 18px}
+  .apoio-link{width:100%;text-align:center}
+}
+</style>
+</head>
+<body>
+<div class="faixa"><i></i><i></i></div>
+<header><div class="barra">
+  <img class="marca" src="midia/logo-agafarma.png" alt="Agafarma">
+  <div class="nome">AgaClube Help<span>Central de ajuda do painel</span></div>
+  <img class="setor" id="setor" src="midia/logo-inovacao.png"
+       alt="Inovação e Desenvolvimento">
+  <button class="voltar ir-home" id="voltar" type="button" hidden>Voltar para a central</button>
+</div></header>
+
+<section class="home" id="home">
+  <div class="capa">
+    <h1>Como fazer no painel Agafarma</h1>
+    <p class="lead">Busque pelo que você precisa resolver ou abra um dos guias.
+       Cada passo traz a explicação e a tela do sistema, com o ponto de ação destacado.</p>
+    <div class="campo">
+      <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+      <input id="busca" type="search" autocomplete="off"
+             placeholder="Ex.: importar EANs, publicar campanha, cadastrar produto, credencial da loja"
+             aria-label="Buscar um tópico de ajuda">
+    </div>
+    <div class="res" id="res" hidden aria-live="polite"></div>
+    <div class="chips"><span class="rot">Mais procurados:</span><button type="button" data-ir="campanhas" data-passo="camp-13">Como importar EANs por planilha</button><button type="button" data-ir="campanhas" data-passo="camp-15">Como publicar a campanha</button><button type="button" data-ir="campanhas" data-passo="camp-10">Como incluir todas as lojas de um estado de uma vez</button><button type="button" data-ir="produtos" data-passo="prod-02">Como cadastrar um produto novo</button><button type="button" data-ir="lojas" data-passo="loj-08">Como gerar as credenciais da loja</button><button type="button" data-ir="campanhas" data-passo="camp-check">Checklist antes de publicar</button></div>
+  </div>
+
+  <div class="secao">
+    <h2>Guias</h2>
+    <p class="desc">O passo a passo completo de cada processo, do começo ao fim.</p>
+    <div class="cards"><button class="card" type="button" data-guia="campanhas">
+      <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11v2a1 1 0 0 0 1 1h2l4 4V6L6 10H4a1 1 0 0 0-1 1Z"/><path d="M14 8.5a4 4 0 0 1 0 7"/><path d="M17 5.5a8 8 0 0 1 0 13"/></svg></span>
+      <h3>Campanhas de Desconto</h3><p>Criação, seleção de lojas, importação de EANs e publicação de campanhas.</p>
+      <ul><li>Como criar uma nova campanha de desconto</li><li>Como escolher entre EAN, classificação hierárquica e marca</li><li>Como definir o preço da campanha</li><li>O que faz a opção Permitir preço abaixo do custo</li></ul>
+      <span class="pe"><span class="qtd">19 passos</span><span class="abrir">Abrir guia</span></span>
+    </button><button class="card amar" type="button" data-guia="produtos">
+      <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4 7v10l8 4 8-4V7Z"/><path d="M4 7l8 4 8-4"/><path d="M12 11v10"/></svg></span>
+      <h3>Cadastro de Novos Produtos</h3><p>Do cadastro do EAN à conferência final, com o material de apoio do I&amp;D.</p>
+      <ul><li>Como saber se o produto já está cadastrado</li><li>Onde informo o nome e o EAN do produto</li><li>Como escolher a linha do produto</li><li>Quantas classificações posso selecionar</li></ul>
+      <span class="pe"><span class="qtd">12 passos</span><span class="abrir">Abrir guia</span></span>
+    </button><button class="card verde" type="button" data-guia="lojas">
+      <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span>
+      <h3>Cadastro de Loja</h3><p>Da criação da unidade à integração da credencial no Trier.</p>
+      <ul><li>Onde cadastrar uma nova unidade</li><li>Quais dados preencher na loja</li><li>Como gerar as credenciais da loja</li><li>Como aplicar a credencial no Trier</li></ul>
+      <span class="pe"><span class="qtd">10 passos</span><span class="abrir">Abrir guia</span></span>
+    </button></div>
+  </div>
+</section>
+
+<section class="guia" id="guia-campanhas" hidden>
+  <div class="wrap">
+    <nav class="lado" aria-label="Índice de Campanhas de Desconto"><h3>Campanhas de Desconto</h3><ol><li><a href="#camp-01"><em>1</em>Acesse o painel</a></li><li><a href="#camp-02"><em>2</em>Localize o módulo</a></li><li><a href="#camp-03"><em>3</em>Reconheça a listagem</a></li><li><a href="#camp-04"><em>4</em>Abra uma nova campanha</a></li><li><a href="#camp-05"><em>5</em>Etapa 1 — Escopo</a></li><li><a href="#camp-06"><em>6</em>Etapa 2 — Identificação</a></li><li><a href="#camp-07"><em>7</em>Etapa 2 — Regra e preço</a></li><li><a href="#camp-08"><em>8</em>Etapa 2 — Vigência</a></li><li><a href="#camp-09"><em>9</em>Etapa 3 — Abrangência</a></li><li><a href="#camp-10"><em>10</em>Etapa 3 — Grupos de lojas</a></li><li><a href="#camp-11"><em>11</em>Etapa 3 — Conferência</a></li><li><a href="#camp-12"><em>12</em>Etapa 4 — Tela de produtos</a></li><li><a href="#camp-13"><em>13</em>Etapa 4 — Importar EANs</a></li><li><a href="#camp-14"><em>14</em>Confira os preços</a></li><li><a href="#camp-15"><em>15</em>Revise e publique</a></li><li><a href="#camp-16"><em>16</em>Ações da campanha</a></li><li><a href="#camp-17"><em>17</em>Detalhes — Visão Geral</a></li><li><a href="#camp-18"><em>18</em>Detalhes — Produtos e Lojas</a></li><li><a href="#camp-19"><em>19</em>Editar a campanha</a></li><li class="fixo"><a href="#camp-check"><em>✓</em>Antes de publicar</a></li></ol></nav>
+    <main>
+      <p class="migalha"><button type="button" class="ir-home">Central de ajuda</button> &rsaquo; Campanhas de Desconto</p>
+      <div class="titulo-guia"><h2>Campanhas de Desconto</h2><p>Criação, seleção de lojas, importação de EANs e publicação de campanhas.</p></div>
+      <section class="apoio">
+        <div class="apoio-topo">
+          <div>
+            <h3>Material de apoio — Campanhas de Desconto</h3>
+            <p>Apresentação em slides do processo completo, feita pelo I&amp;D.</p>
+          </div>
+          <a class="apoio-link" href="https://www.canva.com/design/DAHT27mjRkE/DK_AYgLK42rtMp6ICeuoQA/view?utm_content=DAHT27mjRkE&amp;utm_campaign=designshare&amp;utm_medium=embeds&amp;utm_source=link" target="_blank" rel="noopener">Abrir em nova aba</a>
+        </div>
+        <div class="apoio-frame">
+          <iframe src="https://www.canva.com/design/DAHT27mjRkE/DK_AYgLK42rtMp6ICeuoQA/view?embed" loading="lazy" allowfullscreen allow="fullscreen"
+                  referrerpolicy="strict-origin-when-cross-origin"
+                  title="Material de apoio — Campanhas de Desconto"></iframe>
+        </div>
+        <p class="apoio-nota">Se a apresentação não carregar aqui (bloqueio de rede ou navegador),
+           use o botão <b>Abrir em nova aba</b>.</p>
+      </section><article class="passo" id="camp-01"><div class="cabeca"><span class="num">1</span><div><h3>Acesse o painel</h3><p class="sub">Tela de login</p></div></div><div class="instr"><h4>Entrada no sistema</h4><p>Abra <b>admin.agaclube.com</b>, informe o usuário e a senha e clique em <b>Entrar</b>. O sistema abre na tela <b>Início</b>, com a saudação e a data do dia.</p></div><div class="midia" data-chave="camp-01"></div></article><article class="passo" id="camp-02"><div class="cabeca"><span class="num">2</span><div><h3>Localize o módulo</h3><p class="sub">Navegação pelo menu lateral</p></div></div><div class="instr"><h4>Campanhas › Campanhas de Desconto</h4><ul><li>O menu lateral traz Início, Campanhas, Mensageria, Lojas e Produtos, além de Usuários (Admin) e Relatórios (Auditoria)</li><li>Abra <b>Campanhas</b> e clique em <b>Campanhas de Desconto</b></li><li>Os cards da tela Início e a busca rápida (⌘K) levam ao mesmo lugar</li></ul></div><div class="midia" data-chave="camp-02"></div></article><article class="passo" id="camp-03"><div class="cabeca"><span class="num">3</span><div><h3>Reconheça a listagem</h3><p class="sub">Tela principal do módulo</p></div></div><div class="instr"><h4>O que aparece na tela</h4><ul><li>Abas <b>Campanhas</b> e <b>Grupos de Campanhas</b></li><li>Busca por nome ou descrição e painel de <b>Filtros Avançados</b></li><li>Colunas: Nome, Objetivo, Tipo de Regra, Escopo, Data Início, Data Fim, Status e Ações</li><li>No rodapé: Densidade, Itens por página e total de resultados</li></ul></div><div class="aviso"><span class="ic" aria-hidden="true">!</span><p>Os status da listagem são <b>Rascunho</b> (salva, ainda não publicada) e <b>Ativa</b> (publicada).</p></div><div class="midia" data-chave="camp-03"></div></article><article class="passo" id="camp-04"><div class="cabeca"><span class="num">4</span><div><h3>Abra uma nova campanha</h3><p class="sub">Início do cadastro</p></div></div><div class="instr"><h4>Botão + Nova Campanha</h4><p>Clique em <b>+ Nova Campanha</b>, no canto superior direito. Abre a tela <b>Nova Campanha de Desconto</b>, com as seções numeradas liberadas conforme você avança.</p></div><div class="midia" data-chave="camp-04"></div></article><article class="passo" id="camp-05"><div class="cabeca"><span class="num">5</span><div><h3>Etapa 1 — Escopo</h3><p class="sub">Como os produtos entram na campanha</p></div></div><div class="instr"><h4>Três formas de montar a campanha</h4><ul><li><b>EAN</b> — por código de barras específico, com a lista de produtos conhecida</li><li><b>Classificação Hierárquica</b> — por classificação farmacêutica (antifúngicos, antialérgicos e afins)</li><li><b>Marca</b> — por marca ou fabricante, alcançando o portfólio vinculado</li></ul><p class="nota">O passo a passo daqui em diante segue por EAN, a título de exemplo. As etapas seguintes são iguais nos três casos.</p></div><div class="midia" data-chave="camp-05"></div></article><article class="passo" id="camp-06"><div class="cabeca"><span class="num">6</span><div><h3>Etapa 2 — Identificação</h3><p class="sub">Nome, objetivo e descrição</p></div></div><div class="instr"><h4>Campos de identificação</h4><ul><li><b>Nome da campanha</b> — obrigatório (ex.: ENCARTE SETEMBRO RS)</li><li><b>Objetivo da campanha</b> — lista suspensa (ex.: Encarte)</li><li><b>Descrição</b> — texto livre, opcional</li></ul></div><div class="aviso"><span class="ic" aria-hidden="true">!</span><p>Preencha sempre o nome. Campanhas salvas sem nome aparecem em branco na listagem e ficam impossíveis de identificar depois.</p></div><div class="midia" data-chave="camp-06"></div></article><article class="passo" id="camp-07"><div class="cabeca"><span class="num">7</span><div><h3>Etapa 2 — Regra e preço</h3><p class="sub">Como o desconto é calculado</p></div></div><div class="instr"><h4>Regra de desconto e preço padrão</h4><p>Escolha a <b>Regra de desconto</b> (ex.: Regra Por Preço Fixo) e informe o <b>Preço Padrão</b>, que passa a valer para os produtos da campanha.</p></div><div class="aviso"><span class="ic" aria-hidden="true">!</span><p>Mantenha <b>Permitir preço abaixo do custo</b> sempre ativo. Quando ativado, o desconto é aplicado mesmo que o preço de campanha fique menor que o custo da última compra. Desativado, o sistema não aplica o desconto nesses produtos.</p></div><div class="midia" data-chave="camp-07"></div></article><article class="passo" id="camp-08"><div class="cabeca"><span class="num">8</span><div><h3>Etapa 2 — Vigência</h3><p class="sub">Período em que o desconto vale</p></div></div><div class="instr"><h4>Vigência da Campanha</h4><ul><li><b>Data de início</b> — primeiro dia em que o preço de campanha passa a valer nas lojas</li><li><b>Data de fim</b> — último dia de validade; depois dela o preço volta ao normal</li><li>Os dois campos abrem um calendário pelo ícone à direita</li></ul><p class="nota">Com as datas preenchidas, clique em <b>Continuar</b> para ir à etapa de lojas.</p></div><div class="aviso"><span class="ic" aria-hidden="true">!</span><p>A vigência definida aqui vale para a campanha inteira. O ajuste de um produto isolado é feito depois, no passo 14.</p></div><div class="midia" data-chave="camp-08"></div></article><article class="passo" id="camp-09"><div class="cabeca"><span class="num">9</span><div><h3>Etapa 3 — Abrangência</h3><p class="sub">Quais lojas participam</p></div></div><div class="instr"><h4>Selecione a abrangência da campanha</h4><ul><li><b>Lojas específicas</b> — você escolhe as unidades, uma a uma ou por grupo</li><li><b>Todas as lojas</b> — a campanha vale para a rede inteira</li></ul><p class="nota">Ao marcar <b>Lojas específicas</b>, abre o bloco <b>Selecione as lojas participantes</b>, com a busca por grupo e a lista completa de unidades.</p></div><div class="midia" data-chave="camp-09"></div></article><article class="passo" id="camp-10"><div class="cabeca"><span class="num">10</span><div><h3>Etapa 3 — Grupos de lojas</h3><p class="sub">Incluir um estado inteiro de uma vez</p></div></div><div class="instr"><h4>Adicionar por grupo</h4><ul><li>No campo <b>Adicionar por grupo</b>, busque o grupo desejado — por exemplo <b>LOJAS RS</b> ou <b>LOJAS SC</b>. O sistema mostra quantas lojas cada grupo tem</li><li>Clicar no grupo adiciona todas as lojas dele de uma só vez</li><li>Para casos pontuais, use a busca por nome, descrição ou CNPJ e marque a caixa de cada loja</li></ul></div><div class="aviso"><span class="ic" aria-hidden="true">!</span><p>Prefira sempre o grupo quando a campanha for de estado inteiro. Marcar centenas de lojas uma a uma é onde as falhas de seleção aparecem.</p></div><div class="midia" data-chave="camp-10"></div></article><article class="passo" id="camp-11"><div class="cabeca"><span class="num">11</span><div><h3>Etapa 3 — Conferência</h3><p class="sub">Revisão das lojas escolhidas</p></div></div><div class="instr"><h4>Lojas selecionadas</h4><ul><li>Abaixo da lista aparece o bloco <b>Lojas selecionadas</b>, com a contagem entre parênteses e o nome e o código de cada unidade</li><li>Para tirar uma loja, clique no ícone de lixeira à direita da linha</li><li>Confira a contagem antes de clicar em <b>Continuar</b></li></ul></div><div class="midia" data-chave="camp-11"></div></article><article class="passo" id="camp-12"><div class="cabeca"><span class="num">12</span><div><h3>Etapa 4 — Tela de produtos</h3><p class="sub">Onde os itens da campanha entram</p></div></div><div class="instr"><h4>4. Seleção dos produtos e definição de regras</h4><ul><li>Ao entrar, o sistema confirma com <b>Lojas atualizadas com sucesso</b> e a lista começa vazia</li><li>Abas <b>Todos</b>, <b>Ativos</b> e <b>Inativos</b>, cada uma com a própria contagem</li><li>A <b>Busca inteligente</b> aceita nome, setor ou EAN; ao lado ficam os <b>Filtros avançados</b></li><li>No rodapé: itens por página e total de resultados</li></ul></div><div class="midia" data-chave="camp-12"></div></article><article class="passo" id="camp-13"><div class="cabeca"><span class="num">13</span><div><h3>Etapa 4 — Importar EANs</h3><p class="sub">Planilha ou digitação</p></div></div><div class="instr"><h4>Importar produtos por EAN</h4><ul><li>Abra o menu de três pontos (⋮) à direita da busca e escolha <b>Importar EAN/preço</b></li><li><b>Por planilha</b>: clique em <b>Selecionar Excel/CSV</b>. O arquivo precisa ter as colunas <b>EAN</b> e <b>Preço final</b></li><li><b>Manualmente</b>: cole os EANs no campo de texto, separados por vírgula, ponto e vírgula ou quebra de linha</li><li>Clique em <b>Importar</b> e aguarde o processamento</li></ul></div><div class="aviso"><span class="ic" aria-hidden="true">!</span><p>São aceitos EANs de <b>8 ou 13 dígitos</b>. Valores duplicados são ignorados pelo sistema.</p></div><div class="midia" data-chave="camp-13"></div></article><article class="passo" id="camp-14"><div class="cabeca"><span class="num">14</span><div><h3>Confira os preços</h3><p class="sub">Ajuste por produto</p></div></div><div class="instr"><h4>Preço e vigência de um item específico</h4><ul><li>Depois da importação, cada produto aparece na lista com o preço de campanha aplicado</li><li>Quando a planilha traz um preço diferente do Preço Padrão, vale o valor da planilha para aquele item</li><li>É possível corrigir o preço ou a vigência de um produto isolado sem alterar o restante da campanha</li></ul></div><div class="aviso"><span class="ic" aria-hidden="true">!</span><p>Confira linha a linha os produtos vindos de planilha antes de publicar. Preço errado publicado vira preço praticado no balcão.</p></div><div class="midia" data-chave="camp-14"></div></article><article class="passo" id="camp-15"><div class="cabeca"><span class="num">15</span><div><h3>Revise e publique</h3><p class="sub">Do rascunho para o ar</p></div></div><div class="instr"><h4>Publicação da campanha</h4><ul><li>Revise o resumo: escopo, identificação, regra e preço, vigência, lojas e produtos</li><li>Publique a campanha para que ela saia de <b>Rascunho</b> e passe a <b>Ativa</b></li><li>Na listagem, confira se o status mudou e se as datas estão corretas</li></ul><p class="nota">Use o <a href="#camp-check">checklist Antes de publicar</a>, no fim deste guia, para conferir tudo de uma vez.</p></div><div class="aviso"><span class="ic" aria-hidden="true">!</span><p>Campanha em <b>Rascunho</b> não aplica desconto nenhum nas lojas. Só a publicação coloca o preço em vigor.</p></div><div class="midia" data-chave="camp-15"></div></article><article class="passo" id="camp-16"><div class="cabeca"><span class="num">16</span><div><h3>Ações da campanha</h3><p class="sub">Menu de três pontos na listagem</p></div></div><div class="instr"><h4>O que cada ação faz</h4><ul><li><b>Ver detalhes</b> — abre a janela com visão geral, produtos e lojas</li><li><b>Editar</b> — abre a campanha para alteração</li><li><b>Encerrar campanha</b> — tira do ar uma campanha <b>Ativa</b></li></ul></div><div class="aviso"><span class="ic" aria-hidden="true">!</span><p><b>Encerrar campanha</b> tem efeito sobre o preço praticado nas lojas. Use quando a campanha precisar sair do ar antes da data de fim.</p></div><div class="midia" data-chave="camp-16"></div></article><article class="passo" id="camp-17"><div class="cabeca"><span class="num">17</span><div><h3>Detalhes — Visão Geral</h3><p class="sub">Resumo da campanha</p></div></div><div class="instr"><h4>O que a Visão Geral mostra</h4><ul><li><b>Início</b>, <b>Fim</b> e <b>Duração</b> em dias</li><li><b>Tipo de Regra</b>, <b>Preço Promocional</b>, <b>Escopo de Unidades</b> e <b>Abaixo do Custo</b></li><li><b>Informações Gerais</b>: Tipo, Escopo, Grupo de Campanha e Código</li><li><b>Registro</b>: criado em e atualizado em, com data e hora</li></ul><p class="nota">O código da campanha (ex.: AGA_EANENCFIXSTO_2608_…) tem um botão de cópia ao lado. Use esse código ao abrir chamado com o I&amp;D.</p></div><div class="midia" data-chave="camp-17"></div></article><article class="passo" id="camp-18"><div class="cabeca"><span class="num">18</span><div><h3>Detalhes — Produtos e Lojas</h3><p class="sub">Conferência do que entrou</p></div></div><div class="instr"><h4>Abas Produtos e Lojas</h4><ul><li>O nome de cada aba traz a contagem — por exemplo <b>Produtos (82)</b> e <b>Lojas (14)</b></li><li>Em <b>Produtos</b>: EAN, nome, preço de campanha, vigência e status de cada item</li><li>Em <b>Lojas</b>: as unidades que recebem o desconto</li><li><b>Fechar</b> volta para a listagem</li></ul><p class="nota">É o caminho mais rápido para conferir se a importação de EANs entrou completa: compare a contagem da aba com o total da sua planilha.</p></div><div class="midia" data-chave="camp-18"></div></article><article class="passo" id="camp-19"><div class="cabeca"><span class="num">19</span><div><h3>Editar a campanha</h3><p class="sub">Alteração depois de criada</p></div></div><div class="instr"><h4>Editar Campanha de Desconto</h4><ul><li>No menu de três pontos, escolha <b>Editar</b>. A tela abre com as seções já preenchidas</li><li><b>Nome da campanha</b>, <b>Descrição</b> e <b>Preço Padrão</b> aparecem editáveis</li><li><b>Objetivo</b>, <b>Regra de desconto</b> e as <b>datas de vigência</b> aparecem esmaecidos na tela de edição</li></ul></div><div class="aviso"><span class="ic" aria-hidden="true">!</span><p>Se o campo que você precisa mudar estiver esmaecido, ele não é alterado por aqui. Nesse caso a saída é encerrar a campanha e criar uma nova.</p></div><div class="midia" data-chave="camp-19"></div></article><section class="check" id="camp-check">
+        <div class="check-topo">
+          <div>
+            <h3>Antes de publicar</h3>
+            <p>Os dez pontos que mais causam retrabalho, reunidos num lugar só.
+               O que você marcar fica salvo neste navegador.</p>
+          </div>
+          <div class="check-estado">
+            <strong id="check-contador">0 de 10</strong>
+            <button type="button" id="check-limpar">Limpar</button>
+          </div>
+        </div>
+        <ol class="check-lista"><li><label><input type="checkbox" data-check="c1">
+             <span>Nome da campanha preenchido e identificável (ex.: ENCARTE SETEMBRO RS)</span></label>
+             <button type="button" class="ver" data-ir="campanhas"
+                     data-passo="camp-06">passo 6</button></li><li><label><input type="checkbox" data-check="c2">
+             <span>Regra de desconto e Preço Padrão conferidos</span></label>
+             <button type="button" class="ver" data-ir="campanhas"
+                     data-passo="camp-07">passo 7</button></li><li><label><input type="checkbox" data-check="c3">
+             <span><b>Permitir preço abaixo do custo</b> está ativo</span></label>
+             <button type="button" class="ver" data-ir="campanhas"
+                     data-passo="camp-07">passo 7</button></li><li><label><input type="checkbox" data-check="c4">
+             <span>Datas de início e fim corretas — confira o ano</span></label>
+             <button type="button" class="ver" data-ir="campanhas"
+                     data-passo="camp-08">passo 8</button></li><li><label><input type="checkbox" data-check="c5">
+             <span>A contagem em <b>Lojas selecionadas</b> bate com o que foi combinado</span></label>
+             <button type="button" class="ver" data-ir="campanhas"
+                     data-passo="camp-11">passo 11</button></li><li><label><input type="checkbox" data-check="c6">
+             <span>A contagem de produtos importados bate com o total da planilha</span></label>
+             <button type="button" class="ver" data-ir="campanhas"
+                     data-passo="camp-13">passo 13</button></li><li><label><input type="checkbox" data-check="c7">
+             <span>Preços dos itens vindos de planilha conferidos linha a linha</span></label>
+             <button type="button" class="ver" data-ir="campanhas"
+                     data-passo="camp-14">passo 14</button></li><li><label><input type="checkbox" data-check="c8">
+             <span>Produtos que não apareceram na importação foram cadastrados antes</span></label>
+             <button type="button" class="ver" data-ir="produtos"
+                     data-passo="prod-01">passo produtos</button></li><li><label><input type="checkbox" data-check="c9">
+             <span>Depois de publicar: o status virou <b>Ativa</b> na listagem</span></label>
+             <button type="button" class="ver" data-ir="campanhas"
+                     data-passo="camp-15">passo 15</button></li><li><label><input type="checkbox" data-check="c10">
+             <span>Depois de publicar: <b>Ver detalhes › Produtos e Lojas</b> confere com o planejado</span></label>
+             <button type="button" class="ver" data-ir="campanhas"
+                     data-passo="camp-18">passo 18</button></li></ol>
+        <p class="check-nota">Preço errado publicado vira preço praticado em loja.
+           Vale os dois minutos.</p>
+      </section><section class="manual">
+        <div>
+          <h3>Manual completo em PDF</h3>
+          <p>Mesmo conteúdo desta página, em documento para imprimir ou enviar por e-mail.
+             Campanhas de Desconto · 9 páginas.</p>
+        </div>
+        <a class="baixar" href="manuais/campanhas-de-desconto.pdf" download>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 3v12"/><path d="m7 11 5 5 5-5"/><path d="M4 20h16"/></svg>
+          Baixar manual
+        </a>
+      </section>
+    </main>
+  </div>
+</section>
+<section class="guia" id="guia-produtos" hidden>
+  <div class="wrap">
+    <nav class="lado" aria-label="Índice de Cadastro de Novos Produtos"><h3>Cadastro de Novos Produtos</h3><ol><li><a href="#prod-01"><em>1</em>Acesse Produtos Cadastrados</a></li><li><a href="#prod-02"><em>2</em>Reconheça a listagem</a></li><li><a href="#prod-03"><em>3</em>Informe o nome do produto</a></li><li><a href="#prod-04"><em>4</em>Informe o EAN</a></li><li><a href="#prod-05"><em>5</em>Ético ou Popular, PBM e Mercado</a></li><li><a href="#prod-06"><em>6</em>Abra a lista de linhas de produto</a></li><li><a href="#prod-07"><em>7</em>Busque e confirme a linha</a></li><li><a href="#prod-08"><em>8</em>Abra a Classificação Hierárquica</a></li><li><a href="#prod-09"><em>9</em>Marque a classificação</a></li><li><a href="#prod-10"><em>10</em>Informações Adicionais e criação</a></li><li><a href="#prod-11"><em>11</em>Valide o cadastro</a></li><li><a href="#prod-12"><em>12</em>Confira pela busca</a></li></ol></nav>
+    <main>
+      <p class="migalha"><button type="button" class="ir-home">Central de ajuda</button> &rsaquo; Cadastro de Novos Produtos</p>
+      <div class="titulo-guia"><h2>Cadastro de Novos Produtos</h2><p>Como cadastrar novos produtos no sistema.</p></div>
+      <section class="apoio">
+        <div class="apoio-topo">
+          <div>
+            <h3>Material de apoio — Cadastro de Produtos</h3>
+            <p>Apresentação completa de cadastro de produtos, feita pelo I&amp;D.</p>
+          </div>
+          <a class="apoio-link" href="https://www.canva.com/design/DAHTlIK4W1c/e_0L-aP8bEuApFSubSv8CA/view?utm_content=DAHTlIK4W1c&amp;utm_campaign=designshare&amp;utm_medium=embeds&amp;utm_source=link" target="_blank" rel="noopener">Abrir em nova aba</a>
+        </div>
+        <div class="apoio-frame">
+          <iframe src="https://www.canva.com/design/DAHTlIK4W1c/e_0L-aP8bEuApFSubSv8CA/view?embed" loading="lazy" allowfullscreen allow="fullscreen"
+                  referrerpolicy="strict-origin-when-cross-origin"
+                  title="Material de apoio — Cadastro de Produtos"></iframe>
+        </div>
+        <p class="apoio-nota">Se a apresentação não carregar aqui (bloqueio de rede ou navegador),
+           use o botão <b>Abrir em nova aba</b>.</p>
+      </section><article class="passo" id="prod-01"><div class="cabeca"><span class="num">1</span><div><h3>Acesse Produtos Cadastrados</h3><p class="sub">Navegação pelo menu lateral</p></div></div><div class="instr"><h4>Produtos › Produtos Cadastrados</h4><ul><li>No menu lateral, expanda <b>Produtos</b>. Aparecem três telas: <b>Produtos Cadastrados</b>, <b>Linhas de Produto</b> e <b>Classificações Hierárquicas</b>.</li><li>Abra <b>Produtos Cadastrados</b>. É aqui que fica toda a base e é aqui que se procura um produto que não apareceu na campanha.</li></ul></div><div class="midia" data-chave="prod-01"></div></article><article class="passo" id="prod-02"><div class="cabeca"><span class="num">2</span><div><h3>Reconheça a listagem</h3><p class="sub">Busca, filtros e novo cadastro</p></div></div><div class="instr"><h4>O que aparece na tela</h4><ul><li>Busca por <b>Nome, EAN, Setor NEC ou Área da farmácia</b></li><li>Painel de <b>Filtros Avançados</b>, com os botões <b>Pesquisar</b> e <b>Limpar</b></li><li>Colunas: Nome, EAN, Tipo, Origem, PBM, Status e Ações</li><li><b>+ Novo Produto</b> e <b>Exportar</b> no canto superior direito</li></ul></div><div class="aviso"><span class="ic" aria-hidden="true">!</span><p>Antes de criar qualquer coisa, busque o EAN aqui. Produto que já existe não precisa de novo cadastro, e duplicata atrapalha a montagem da campanha.</p></div><div class="midia" data-chave="prod-02"></div></article><article class="passo" id="prod-03"><div class="cabeca"><span class="num">3</span><div><h3>Informe o nome do produto</h3><p class="sub">Primeiro campo do formulário</p></div></div><div class="instr"><h4>Nome do Produto</h4><ul><li>Digite a descrição como ela deve aparecer nas listagens (ex.: BODY SPLASH AGABEAUTY 200ML NOITE CINTILANTE).</li><li>Conforme você digita, o painel sugere nomes parecidos que já existem na base.</li></ul></div><div class="aviso"><span class="ic" aria-hidden="true">!</span><p>Se a sugestão que aparecer for exatamente o produto que você ia cadastrar, ele já existe. Cancele e use o registro que está lá.</p></div><div class="midia" data-chave="prod-03"></div></article><article class="passo" id="prod-04"><div class="cabeca"><span class="num">4</span><div><h3>Informe o EAN</h3><p class="sub">Código de barras do produto</p></div></div><div class="instr"><h4>EAN</h4><ul><li>Digite a sequência exata do código de barras.</li><li>É por esse número que o sistema encontra o produto na hora de montar a campanha.</li></ul></div><div class="aviso"><span class="ic" aria-hidden="true">!</span><p>EAN de 12 e de 13 dígitos são <b>registros diferentes</b> para o sistema. Confira no produto físico antes de digitar — foi assim que nasceram os duplicados que aparecem no passo 12.</p></div><div class="midia" data-chave="prod-04"></div></article><article class="passo" id="prod-05"><div class="cabeca"><span class="num">5</span><div><h3>Ético ou Popular, PBM e Mercado</h3><p class="sub">Classificação comercial do item</p></div></div><div class="instr"><h4>Os três campos ao lado</h4><ul><li><b>Ético / Popular</b> — lista suspensa, obrigatória</li><li><b>PBM</b> — chave obrigatória, ligada ou desligada</li><li><b>Mercado</b> — chave opcional</li></ul></div><div class="midia" data-chave="prod-05"></div></article><article class="passo" id="prod-06"><div class="cabeca"><span class="num">6</span><div><h3>Abra a lista de linhas de produto</h3><p class="sub">Campo Linha de Produto</p></div></div><div class="instr"><h4>Selecione a linha de produto</h4><p>Clique em <b>Selecione a linha de produto</b>. Abre a janela <b>Selecionar Linha de Produto</b>, com a base completa de linhas.</p></div><div class="midia" data-chave="prod-06"></div></article><article class="passo" id="prod-07"><div class="cabeca"><span class="num">7</span><div><h3>Busque e confirme a linha</h3><p class="sub">Janela Selecionar Linha de Produto</p></div></div><div class="instr"><h4>Como achar a linha certa</h4><ul><li>A base tem dezenas de milhares de linhas — sempre use a busca, nunca role a lista</li><li>A tabela mostra <b>Linha de Produto, Marca, Laboratório, Corporação</b> e <b>Status</b></li><li>Marque a linha desejada e clique em <b>Confirmar Seleção</b></li></ul></div><div class="aviso"><span class="ic" aria-hidden="true">!</span><p>O botão <b>Confirmar Seleção</b> só habilita depois que uma linha é marcada. Fechar a janela sem confirmar deixa o produto sem linha.</p></div><div class="midia" data-chave="prod-07"></div></article><article class="passo" id="prod-08"><div class="cabeca"><span class="num">8</span><div><h3>Abra a Classificação Hierárquica</h3><p class="sub">Busca e abas</p></div></div><div class="instr"><h4>Onde a classificação é escolhida</h4><ul><li>Campo <b>Buscar classificações por nome ou código</b></li><li>Abas <b>Todos</b>, <b>Comercial</b>, <b>Terapêutica</b> e <b>Forma de Apresentação</b></li><li>A tabela traz Nome, Código, Esquema e Status de cada classificação</li></ul></div><div class="midia" data-chave="prod-08"></div></article><article class="passo" id="prod-09"><div class="cabeca"><span class="num">9</span><div><h3>Marque a classificação</h3><p class="sub">Uma seleção por esquema</p></div></div><div class="instr"><h4>Seleção e conferência</h4><ul><li>Marque a caixa da linha desejada</li><li>O bloco <b>Classificações Hierárquicas Selecionadas</b> mostra o que entrou, no formato <b>Terapêutica → PERFUME P/ MULHERES</b></li><li>O × ao lado do rótulo remove a seleção</li></ul></div><div class="aviso"><span class="ic" aria-hidden="true">!</span><p>É permitida <b>apenas uma seleção por classificação</b>: uma Comercial, uma Terapêutica e uma Forma de Apresentação.</p></div><div class="midia" data-chave="prod-09"></div></article><article class="passo" id="prod-10"><div class="cabeca"><span class="num">10</span><div><h3>Informações Adicionais e criação</h3><p class="sub">Fecho do cadastro</p></div></div><div class="instr"><h4>O que ainda dá para preencher</h4><ul><li>A seção <b>Informações Adicionais</b> traz Código Externo, Tipo de Farmácia Popular, Setor NEC Aberto, Área da Farmácia e Moléculas</li><li>Nenhum desses campos é obrigatório para o produto funcionar nas campanhas</li><li><b>Moléculas</b> aceita vários nomes separados por vírgula, confirmando com Enter</li><li>Clique em <b>Criar Produto</b></li></ul><p class="nota">O botão <b>Criar Produto</b> aparece tanto no topo quanto no fim da página.</p></div><div class="midia" data-chave="prod-10"></div></article><article class="passo" id="prod-11"><div class="cabeca"><span class="num">11</span><div><h3>Valide o cadastro</h3><p class="sub">Confirmação do sistema</p></div></div><div class="instr"><h4>Mensagem de sucesso</h4><p>A mensagem <b>Produto criado(a) com sucesso</b> aparece no canto superior direito e a tela volta para <b>Produtos Cadastrados</b>.</p></div><div class="midia" data-chave="prod-11"></div></article><article class="passo" id="prod-12"><div class="cabeca"><span class="num">12</span><div><h3>Confira pela busca</h3><p class="sub">Última verificação</p></div></div><div class="instr"><h4>Busque o EAN que você acabou de cadastrar</h4><ul><li>Cole o EAN na busca e clique em <b>Pesquisar</b></li><li>Confira Nome, EAN e o status <b>Ativo</b></li><li>A coluna <b>Origem</b> mostra <b>Manual</b> para produtos criados à mão</li></ul></div><div class="aviso"><span class="ic" aria-hidden="true">!</span><p>Repare no exemplo: a busca trouxe <b>dois registros com o mesmo nome</b>, um com EAN de 12 e outro de 13 dígitos. Sempre confira se você não acabou de criar uma duplicata.</p></div><div class="midia" data-chave="prod-12"></div></article><section class="manual">
+        <div>
+          <h3>Manual completo em PDF</h3>
+          <p>Mesmo conteúdo desta página, em documento para imprimir ou enviar por e-mail.
+             Cadastro de Novos Produtos · 9 páginas.</p>
+        </div>
+        <a class="baixar" href="manuais/cadastro-de-novos-produtos.pdf" download>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 3v12"/><path d="m7 11 5 5 5-5"/><path d="M4 20h16"/></svg>
+          Baixar manual
+        </a>
+      </section>
+    </main>
+  </div>
+</section>
+<section class="guia" id="guia-lojas" hidden>
+  <div class="wrap">
+    <nav class="lado" aria-label="Índice de Cadastro de Loja"><h3>Cadastro de Loja</h3><ol><li><a href="#loj-01"><em>1</em>Acesse a listagem de lojas</a></li><li><a href="#loj-02"><em>2</em>Informações da Loja</a></li><li><a href="#loj-03"><em>3</em>Endereço</a></li><li><a href="#loj-04"><em>4</em>Telefones</a></li><li><a href="#loj-05"><em>5</em>Propriedades</a></li><li><a href="#loj-06"><em>6</em>Salve o cadastro</a></li><li><a href="#loj-07"><em>7</em>Confira em Ver Detalhes</a></li><li><a href="#loj-08"><em>8</em>Credenciais</a></li><li><a href="#loj-09"><em>9</em>Trier — Integração Parceiros</a></li><li><a href="#loj-10"><em>10</em>Trier — Configurações do integrador</a></li></ol></nav>
+    <main>
+      <p class="migalha"><button type="button" class="ir-home">Central de ajuda</button> &rsaquo; Cadastro de Loja</p>
+      <div class="titulo-guia"><h2>Cadastro de Loja</h2><p>Da criação da unidade no painel à aplicação da credencial no Trier.</p></div>
+      <section class="apoio">
+        <div class="apoio-topo">
+          <div>
+            <h3>Material de apoio — Cadastro de Loja</h3>
+            <p>Apresentação em slides com o processo completo, feita pelo I&amp;D.</p>
+          </div>
+          <a class="apoio-link" href="https://www.canva.com/design/DAHT-_dZcHI/q4CrrLixnJC2YDtBw5jV1w/view?utm_content=DAHT-_dZcHI&amp;utm_campaign=designshare&amp;utm_medium=embeds&amp;utm_source=link" target="_blank" rel="noopener">Abrir em nova aba</a>
+        </div>
+        <div class="apoio-frame">
+          <iframe src="https://www.canva.com/design/DAHT-_dZcHI/q4CrrLixnJC2YDtBw5jV1w/view?embed" loading="lazy" allowfullscreen allow="fullscreen"
+                  referrerpolicy="strict-origin-when-cross-origin"
+                  title="Material de apoio — Cadastro de Loja"></iframe>
+        </div>
+        <p class="apoio-nota">Se a apresentação não carregar aqui (bloqueio de rede ou navegador),
+           use o botão <b>Abrir em nova aba</b>.</p>
+      </section><article class="passo" id="loj-01"><div class="cabeca"><span class="num">1</span><div><h3>Acesse a listagem de lojas</h3><p class="sub">Navegação e início do cadastro</p></div></div><div class="instr"><h4>Lojas › Listagem de Lojas</h4><ul><li>No menu lateral, abra <b>Lojas</b> e clique em <b>Listagem de Lojas</b></li><li>A tela traz busca por <b>Nome/CNPJ</b>, <b>Código da unidade</b>, filtro de <b>Status</b> e a caixa <b>Incluir excluídos</b></li><li>Colunas: Nome, CNPJ, Código da unidade, Status e Ações</li><li>Para começar, clique em <b>+ Nova loja</b>, no canto superior direito</li></ul></div><div class="aviso"><span class="ic" aria-hidden="true">!</span><p>Antes de criar, pesquise o CNPJ na listagem. Marque <b>Incluir excluídos</b> na busca — uma unidade excluída não aparece por padrão e pode ser reaproveitada em vez de recadastrada.</p></div><div class="midia" data-chave="loj-01"></div></article><article class="passo" id="loj-02"><div class="cabeca"><span class="num">2</span><div><h3>Informações da Loja</h3><p class="sub">Dados de identificação</p></div></div><div class="instr"><h4>Primeiro bloco do formulário</h4><ul><li><b>Nome de Exibição</b> — como a loja aparece nas telas do painel</li><li><b>CNPJ</b> da unidade</li><li><b>Código da Unidade</b> — o número que identifica a loja nas demais telas</li><li><b>Nome Curto</b> — versão reduzida, para listas e relatórios</li><li><b>Razão Social</b> e <b>Email</b></li></ul></div><div class="aviso"><span class="ic" aria-hidden="true">!</span><p>Confira <b>CNPJ</b> e <b>Código da Unidade</b> com quem cuida do Trier antes de salvar. São os dois campos que amarram esta loja à integração — o resto dá para corrigir depois com menos dor.</p></div><div class="midia" data-chave="loj-02"></div></article><article class="passo" id="loj-03"><div class="cabeca"><span class="num">3</span><div><h3>Endereço</h3><p class="sub">Localização da unidade</p></div></div><div class="instr"><h4>Segundo bloco do formulário</h4><ul><li>Preencha <b>CEP</b>, <b>Endereço</b>, <b>Número</b>, <b>Complemento</b>, <b>Bairro</b>, <b>Cidade</b> e <b>Estado</b></li><li>Logo abaixo aparecem <b>Latitude</b> e <b>Longitude</b>, que começam em <b>0</b></li></ul></div><div class="midia" data-chave="loj-03"></div></article><article class="passo" id="loj-04"><div class="cabeca"><span class="num">4</span><div><h3>Telefones</h3><p class="sub">Contato da loja</p></div></div><div class="instr"><h4>Terceiro bloco do formulário</h4><ul><li>Informe o número em <b>Telefone</b> e escolha o <b>Tipo</b> (ex.: Celular)</li><li>O ícone de lixeira remove a linha</li><li><b>Adicionar Telefone</b> inclui outra linha, para lojas com mais de um contato</li></ul></div><div class="midia" data-chave="loj-04"></div></article><article class="passo" id="loj-05"><div class="cabeca"><span class="num">5</span><div><h3>Propriedades</h3><p class="sub">Atributos da unidade</p></div></div><div class="instr"><h4>Último bloco do formulário</h4><ul><li>Abra a lista <b>Propriedades</b> e marque o que se aplica à unidade</li><li>As opções são <b>Farmácia Popular</b>, <b>Tele Entrega</b>, <b>Espaço Clínico</b> e <b>Participa Clube Agafarma</b></li><li>Mais de uma propriedade pode ser marcada ao mesmo tempo</li></ul></div><div class="aviso"><span class="ic" aria-hidden="true">!</span><p><b>Participa Clube Agafarma</b> é a propriedade que registra a adesão da unidade ao clube. Confirme com o I&amp;D o que ela habilita antes de deixá-la desmarcada.</p></div><div class="midia" data-chave="loj-05"></div></article><article class="passo" id="loj-06"><div class="cabeca"><span class="num">6</span><div><h3>Salve o cadastro</h3><p class="sub">Conclusão do formulário</p></div></div><div class="instr"><h4>Botão Salvar</h4><p>Com os cinco blocos preenchidos, clique em <b>Salvar</b>. <b>Cancelar</b> fecha a janela sem gravar nada.</p></div><div class="midia" data-chave="loj-06"></div></article><article class="passo" id="loj-07"><div class="cabeca"><span class="num">7</span><div><h3>Confira em Ver Detalhes</h3><p class="sub">Revisão na listagem</p></div></div><div class="instr"><h4>Menu da coluna Ações</h4><ul><li>Localize a loja recém-criada na listagem</li><li>Clique nos três pontos (⋮) da coluna <b>Ações</b> e escolha <b>Ver detalhes</b></li><li>Confira CNPJ, Código da unidade e Status antes de seguir para as credenciais</li></ul></div><div class="midia" data-chave="loj-07"></div></article><article class="passo" id="loj-08"><div class="cabeca"><span class="num">8</span><div><h3>Credenciais</h3><p class="sub">Chave de integração da loja</p></div></div><div class="instr"><h4>Credenciais geradas</h4><ul><li>O painel gera uma credencial <b>única</b> para a loja, com Loja, CNPJ, Razão Social, <b>Usuário</b> e <b>Senha</b></li><li>Clique em <b>Baixar credenciais</b> e guarde o arquivo em local seguro</li></ul></div><div class="aviso"><span class="ic" aria-hidden="true">!</span><p>A própria tela avisa: <b>esta informação não pode ser recuperada posteriormente</b>. Baixe antes de fechar a janela. Perdeu, só gerando de novo.</p></div><div class="midia" data-chave="loj-08"></div></article><article class="passo" id="loj-09"><div class="cabeca"><span class="num">9</span><div><h3>Trier — Integração Parceiros</h3><p class="sub">Onde a credencial é aplicada</p></div></div><div class="instr"><h4>Integrações › Outros › Integração Parceiros</h4><ul><li>No Trier, siga <b>Integrações › Outros › Integração Parceiros</b></li><li>Selecione a <b>Filial</b> correspondente à loja</li><li>Na lista de integradores, localize <b>CLUBE AGAFARMA</b></li><li>O objetivo é deixar <b>Módulo do sistema</b> como HABILITADO e as colunas <b>Ativo</b> e <b>Configurado</b> em <b>SIM</b></li><li>Abra com <b>Configurar integrador [F6]</b> ou pelo ícone de engrenagem da linha</li></ul></div><div class="midia" data-chave="loj-09"></div></article><article class="passo" id="loj-10"><div class="cabeca"><span class="num">10</span><div><h3>Trier — Configurações do integrador</h3><p class="sub">Aplicação da credencial</p></div></div><div class="instr"><h4>Aba Dados do integrador</h4><ul><li><b>URL do Webservice de produção</b>: <code>https://apiclube.agafarma.com.br/api</code></li><li><b>URL do Webservice de homologação</b>: <code>https://api.agaclube.com/api</code></li><li><b>Senha/Chave da API/Token</b>: cole a senha baixada no passo 8</li><li><b>Modo produção</b> e <b>Ativo</b> em <b>SIM</b></li><li>Confirme com <b>Salvar [F2]</b></li></ul></div><div class="aviso"><span class="ic" aria-hidden="true">!</span><p><b>Senha/Chave da API/Token</b> é o campo que recebe a senha do passo 8 — é onde a integração mais falha. Cole sem espaço antes ou depois e confira se a filial selecionada é a certa.</p></div><div class="midia" data-chave="loj-10"></div></article><section class="manual">
+        <div>
+          <h3>Manual completo em PDF</h3>
+          <p>Mesmo conteúdo desta página, em documento para imprimir ou enviar por e-mail.
+             Cadastro de Loja · 13 páginas.</p>
+        </div>
+        <a class="baixar" href="manuais/cadastro-de-loja.pdf" download>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 3v12"/><path d="m7 11 5 5 5-5"/><path d="M4 20h16"/></svg>
+          Baixar manual
+        </a>
+      </section>
+    </main>
+  </div>
+</section>
+
+<footer class="pe-pg"><div>
+  <span>Documento de apoio · Inovação e Desenvolvimento · Agafarma</span>
+  <span>Dúvida ou divergência no sistema: acione o I&amp;D.</span>
+</div></footer>
+
+<script>
+/* ------------------------------------------------------------------
+   MÍDIA DOS PASSOS
+   Os arquivos ficam na pasta "midia", ao lado deste index.html.
+   tipo   : "video" | "imagem"
+   src    : caminho do arquivo
+   inicio : segundo em que o vídeo começa (opcional)
+   poster : imagem de capa exibida antes de tocar (opcional)
+   cap    : legenda curta do que aparece na tela
+   cobre  : quando o mesmo vídeo atende mais de um passo
+   Passo com objeto vazio {} exibe o aviso de vídeo pendente.
+------------------------------------------------------------------ */
+const MIDIA = {
+  "camp-01": {
+    "tipo": "imagem",
+    "src": "midia/camp1.png",
+    "cap": "Tela de login do painel"
+  },
+  "camp-02": {
+    "tipo": "imagem",
+    "src": "midia/passo-camp-02.jpg",
+    "cap": "Menu lateral e atalhos da tela Início"
+  },
+  "camp-03": {},
+  "camp-04": {
+    "tipo": "imagem",
+    "src": "midia/passo-camp-04.jpg",
+    "cap": "Botão + Nova Campanha na listagem"
+  },
+  "camp-05": {
+    "tipo": "imagem",
+    "src": "midia/passo-camp-05.jpg",
+    "cap": "Escolha do escopo da campanha"
+  },
+  "camp-06": {
+    "tipo": "imagem",
+    "src": "midia/passo-camp-06.jpg",
+    "cap": "Nome, objetivo e descrição"
+  },
+  "camp-07": {
+    "tipo": "imagem",
+    "src": "midia/passo-camp-07.jpg",
+    "cap": "Regra, preço padrão e preço abaixo do custo"
+  },
+  "camp-08": {
+    "tipo": "imagem",
+    "src": "midia/passo-camp-08.jpg",
+    "cap": "Datas de início e fim da campanha"
+  },
+  "camp-09": {
+    "tipo": "imagem",
+    "src": "midia/passo-camp-09.jpg",
+    "cap": "Escolha entre lojas específicas e todas as lojas"
+  },
+  "camp-10": {
+    "tipo": "imagem",
+    "src": "midia/passo-camp-10.jpg",
+    "cap": "Inclusão de lojas por grupo"
+  },
+  "camp-11": {
+    "tipo": "imagem",
+    "src": "midia/passo-camp-11.jpg",
+    "cap": "Lista de lojas selecionadas, com o ícone de remoção"
+  },
+  "camp-12": {
+    "tipo": "imagem",
+    "src": "midia/passo-camp-12.jpg",
+    "cap": "Tela de seleção dos produtos"
+  },
+  "camp-13": {
+    "tipo": "imagem",
+    "src": "midia/passo-camp-13.jpg",
+    "cap": "Janela Importar produtos por EAN"
+  },
+  "camp-14": {},
+  "camp-15": {},
+  "camp-16": {
+    "tipo": "imagem",
+    "src": "midia/passo-camp-16.jpg",
+    "cap": "Menu de ações na listagem"
+  },
+  "camp-17": {
+    "tipo": "imagem",
+    "src": "midia/passo-camp-17.jpg",
+    "cap": "Aba Visão Geral dos detalhes"
+  },
+  "camp-18": {
+    "tipo": "imagem",
+    "src": "midia/passo-camp-18.jpg",
+    "cap": "Abas Produtos e Lojas"
+  },
+  "camp-19": {
+    "tipo": "imagem",
+    "src": "midia/passo-camp-19.jpg",
+    "cap": "Tela Editar Campanha de Desconto"
+  },
+  "loj-01": {
+    "tipo": "imagem",
+    "src": "midia/passo-loj-01.jpg",
+    "cap": "Listagem de Lojas e botão Nova loja"
+  },
+  "loj-02": {
+    "tipo": "imagem",
+    "src": "midia/passo-loj-02.jpg",
+    "cap": "Bloco Informações da Loja preenchido"
+  },
+  "loj-03": {
+    "tipo": "imagem",
+    "src": "midia/passo-loj-03.jpg",
+    "cap": "Bloco Endereço"
+  },
+  "loj-04": {
+    "tipo": "imagem",
+    "src": "midia/passo-loj-04.jpg",
+    "cap": "Bloco Telefones"
+  },
+  "loj-05": {
+    "tipo": "imagem",
+    "src": "midia/passo-loj-05.jpg",
+    "cap": "Lista de propriedades da loja"
+  },
+  "loj-06": {
+    "tipo": "imagem",
+    "src": "midia/passo-loj-06.jpg",
+    "cap": "Botão Salvar do formulário"
+  },
+  "loj-07": {
+    "tipo": "imagem",
+    "src": "midia/passo-loj-07.jpg",
+    "cap": "Coluna Ações da listagem de lojas"
+  },
+  "loj-08": {
+    "tipo": "imagem",
+    "src": "midia/passo-loj-08.jpg",
+    "cap": "Janela Credenciais geradas"
+  },
+  "loj-09": {
+    "tipo": "imagem",
+    "src": "midia/passo-loj-09.jpg",
+    "cap": "Integração Parceiros no Trier"
+  },
+  "loj-10": {
+    "tipo": "imagem",
+    "src": "midia/passo-loj-10.jpg",
+    "cap": "Configurações do integrador no Trier"
+  },
+  "prod-01": {
+    "tipo": "imagem",
+    "src": "midia/passo-prod-01.jpg",
+    "cap": "Menu Produtos expandido, com as três telas"
+  },
+  "prod-02": {
+    "tipo": "imagem",
+    "src": "midia/passo-prod-02.jpg",
+    "cap": "Listagem Produtos Cadastrados"
+  },
+  "prod-03": {
+    "tipo": "imagem",
+    "src": "midia/passo-prod-03.jpg",
+    "cap": "Campo Nome do Produto com sugestão da base"
+  },
+  "prod-04": {
+    "tipo": "imagem",
+    "src": "midia/passo-prod-04.jpg",
+    "cap": "Campo EAN preenchido"
+  },
+  "prod-05": {
+    "tipo": "imagem",
+    "src": "midia/passo-prod-05.jpg",
+    "cap": "Ético/Popular, PBM e Mercado"
+  },
+  "prod-06": {
+    "tipo": "imagem",
+    "src": "midia/passo-prod-06.jpg",
+    "cap": "Campo Linha de Produto"
+  },
+  "prod-07": {
+    "tipo": "imagem",
+    "src": "midia/passo-prod-07.jpg",
+    "cap": "Janela Selecionar Linha de Produto"
+  },
+  "prod-08": {
+    "tipo": "imagem",
+    "src": "midia/passo-prod-08.jpg",
+    "cap": "Busca e abas da Classificação Hierárquica"
+  },
+  "prod-09": {
+    "tipo": "imagem",
+    "src": "midia/passo-prod-09.jpg",
+    "cap": "Classificação marcada e rótulo de seleção"
+  },
+  "prod-10": {
+    "tipo": "imagem",
+    "src": "midia/passo-prod-10.jpg",
+    "cap": "Informações Adicionais e botão Criar Produto"
+  },
+  "prod-11": {
+    "tipo": "imagem",
+    "src": "midia/passo-prod-11.jpg",
+    "cap": "Mensagem de produto criado com sucesso"
+  },
+  "prod-12": {
+    "tipo": "imagem",
+    "src": "midia/passo-prod-12.jpg",
+    "cap": "Busca pelo EAN mostrando o produto cadastrado"
+  }
+};
+
+const TOPICOS = [{"q":"Como criar uma nova campanha de desconto","passo":"camp-04","guia":"campanhas","nome":"Campanhas de Desconto"},{"q":"Como escolher entre EAN, classificação hierárquica e marca","passo":"camp-05","guia":"campanhas","nome":"Campanhas de Desconto"},{"q":"Como definir o preço da campanha","passo":"camp-07","guia":"campanhas","nome":"Campanhas de Desconto"},{"q":"O que faz a opção Permitir preço abaixo do custo","passo":"camp-07","guia":"campanhas","nome":"Campanhas de Desconto"},{"q":"Como definir o período de vigência","passo":"camp-08","guia":"campanhas","nome":"Campanhas de Desconto"},{"q":"Como incluir todas as lojas de um estado de uma vez","passo":"camp-10","guia":"campanhas","nome":"Campanhas de Desconto"},{"q":"Como remover uma loja da campanha","passo":"camp-11","guia":"campanhas","nome":"Campanhas de Desconto"},{"q":"Como importar EANs por planilha","passo":"camp-13","guia":"campanhas","nome":"Campanhas de Desconto"},{"q":"Como digitar EANs manualmente","passo":"camp-13","guia":"campanhas","nome":"Campanhas de Desconto"},{"q":"Como corrigir o preço de um produto importado","passo":"camp-14","guia":"campanhas","nome":"Campanhas de Desconto"},{"q":"Como alterar a vigência de um único produto","passo":"camp-14","guia":"campanhas","nome":"Campanhas de Desconto"},{"q":"Como publicar a campanha","passo":"camp-15","guia":"campanhas","nome":"Campanhas de Desconto"},{"q":"Como encerrar uma campanha ativa","passo":"camp-16","guia":"campanhas","nome":"Campanhas de Desconto"},{"q":"Onde encontro o código da campanha","passo":"camp-17","guia":"campanhas","nome":"Campanhas de Desconto"},{"q":"Como ver os produtos e as lojas de uma campanha","passo":"camp-18","guia":"campanhas","nome":"Campanhas de Desconto"},{"q":"Como conferir se a importação de EANs entrou completa","passo":"camp-18","guia":"campanhas","nome":"Campanhas de Desconto"},{"q":"Como editar uma campanha já criada","passo":"camp-19","guia":"campanhas","nome":"Campanhas de Desconto"},{"q":"Onde vejo se a campanha está em rascunho ou ativa","passo":"camp-03","guia":"campanhas","nome":"Campanhas de Desconto"},{"q":"Como cadastrar um produto novo","passo":"prod-02","guia":"produtos","nome":"Cadastro de Novos Produtos"},{"q":"Como saber se o produto já está cadastrado","passo":"prod-02","guia":"produtos","nome":"Cadastro de Novos Produtos"},{"q":"Onde informo o nome do produto","passo":"prod-03","guia":"produtos","nome":"Cadastro de Novos Produtos"},{"q":"Onde informo o EAN do produto","passo":"prod-04","guia":"produtos","nome":"Cadastro de Novos Produtos"},{"q":"O que é Ético ou Popular","passo":"prod-05","guia":"produtos","nome":"Cadastro de Novos Produtos"},{"q":"Como escolher a linha do produto","passo":"prod-07","guia":"produtos","nome":"Cadastro de Novos Produtos"},{"q":"Como definir a classificação hierárquica","passo":"prod-09","guia":"produtos","nome":"Cadastro de Novos Produtos"},{"q":"Quantas classificações posso selecionar","passo":"prod-09","guia":"produtos","nome":"Cadastro de Novos Produtos"},{"q":"Como conferir se o produto foi salvo","passo":"prod-12","guia":"produtos","nome":"Cadastro de Novos Produtos"},{"q":"Como evitar cadastro duplicado","passo":"prod-12","guia":"produtos","nome":"Cadastro de Novos Produtos"},{"q":"O que fazer quando o produto não aparece na campanha","passo":"prod-01","guia":"produtos","nome":"Cadastro de Novos Produtos"},{"q":"Como acessar a listagem de lojas","passo":"loj-01","guia":"lojas","nome":"Cadastro de Loja"},{"q":"Onde cadastrar uma nova unidade","passo":"loj-01","guia":"lojas","nome":"Cadastro de Loja"},{"q":"Quais informações preencher na loja","passo":"loj-02","guia":"lojas","nome":"Cadastro de Loja"},{"q":"Onde informo o código da unidade","passo":"loj-02","guia":"lojas","nome":"Cadastro de Loja"},{"q":"Como cadastrar o endereço da loja","passo":"loj-03","guia":"lojas","nome":"Cadastro de Loja"},{"q":"Como incluir mais de um telefone","passo":"loj-04","guia":"lojas","nome":"Cadastro de Loja"},{"q":"Como marcar que a loja participa do Clube Agafarma","passo":"loj-05","guia":"lojas","nome":"Cadastro de Loja"},{"q":"Onde ver os detalhes de uma loja","passo":"loj-07","guia":"lojas","nome":"Cadastro de Loja"},{"q":"Como gerar as credenciais da loja","passo":"loj-08","guia":"lojas","nome":"Cadastro de Loja"},{"q":"Perdi a senha da credencial da loja","passo":"loj-08","guia":"lojas","nome":"Cadastro de Loja"},{"q":"Como aplicar a credencial no Trier","passo":"loj-10","guia":"lojas","nome":"Cadastro de Loja"},{"q":"Qual a URL do webservice do Clube","passo":"loj-10","guia":"lojas","nome":"Cadastro de Loja"}];
+
+/* ---------- monta a mídia de cada passo ---------- */
+document.querySelectorAll('.midia').forEach(box => {
+  const m = MIDIA[box.dataset.chave];
+
+  if (!m || !m.src) {
+    box.innerHTML = '<div class="pendente"><span class="tag">EM PRODUÇÃO</span>'
+      + '<p>O vídeo deste passo ainda não foi gravado. As instruções acima já valem '
+      + 'para a versão atual do painel.</p></div>';
+    return;
+  }
+
+  const rotulo = m.tipo === 'imagem' ? 'Tela do sistema' : 'Vídeo do passo';
+  let interno;
+
+  if (m.tipo === 'imagem') {
+    interno = `<img src="${m.src}" alt="${m.cap || 'Tela do sistema'}" loading="lazy">`;
+  } else {
+    const src = m.inicio ? `${m.src}#t=${m.inicio}` : m.src;
+    const capa = m.poster ? ` poster="${m.poster}"` : '';
+    interno = `<video src="${src}"${capa} controls preload="metadata" playsinline
+                      title="${m.cap || 'Vídeo do passo'}"></video>`;
+  }
+
+  const legenda = m.cobre
+    ? `${m.cap} · <b>o mesmo vídeo cobre os ${m.cobre}</b>`
+    : (m.cap || '');
+
+  box.innerHTML = `<p class="rotulo">${rotulo}</p>`
+    + `<div class="quadro">${interno}</div>`
+    + (legenda ? `<p class="legenda">${legenda}</p>` : '');
+});
+
+/* ---------- navegação entre home e guias ---------- */
+const home = document.getElementById('home');
+const guias = [...document.querySelectorAll('.guia')];
+const voltar = document.getElementById('voltar');
+const setor = document.getElementById('setor');
+const res = document.getElementById('res');
+const campo = document.getElementById('busca');
+
+function mostrarHome() {
+  home.hidden = false;
+  guias.forEach(g => g.hidden = true);
+  voltar.hidden = true;
+  setor.hidden = false;
+  window.scrollTo({ top: 0, behavior: 'auto' });
+}
+
+function abrir(guia, passo) {
+  home.hidden = true;
+  guias.forEach(g => g.hidden = g.id !== 'guia-' + guia);
+  voltar.hidden = false;
+  setor.hidden = true;
+  res.hidden = true;
+  const alvo = passo && document.getElementById(passo);
+  if (alvo) {
+    alvo.scrollIntoView();
+    alvo.classList.remove('destaque');
+    void alvo.offsetWidth;
+    alvo.classList.add('destaque');
+  } else {
+    window.scrollTo({ top: 0, behavior: 'auto' });
+  }
+}
+
+document.querySelectorAll('[data-guia]').forEach(el =>
+  el.addEventListener('click', () => abrir(el.dataset.guia)));
+document.querySelectorAll('.ir-home').forEach(el =>
+  el.addEventListener('click', mostrarHome));
+
+/* ---------- busca de tópicos ---------- */
+const semAcento = t => t.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+
+function pintar(lista) {
+  if (!lista.length) {
+    res.innerHTML = '<p class="nada">Nenhum tópico encontrado. Abra um dos guias abaixo '
+      + 'para ver o passo a passo completo.</p>';
+    res.hidden = false;
+    return;
+  }
+  res.innerHTML = lista.slice(0, 8).map(t =>
+    `<button type="button" data-ir="${t.guia}" data-passo="${t.passo}">
+       <span class="q">${t.q}</span><span class="g">${t.nome}</span></button>`).join('');
+  res.hidden = false;
+  res.querySelectorAll('button').forEach(b =>
+    b.addEventListener('click', () => abrir(b.dataset.ir, b.dataset.passo)));
+}
+
+campo.addEventListener('input', () => {
+  const t = semAcento(campo.value.trim());
+  if (t.length < 2) { res.hidden = true; return; }
+  pintar(TOPICOS.filter(x => semAcento(x.q + ' ' + x.nome).includes(t)));
+});
+campo.addEventListener('keydown', e => {
+  if (e.key === 'Escape') { campo.value = ''; res.hidden = true; }
+  if (e.key === 'Enter') res.querySelector('button')?.click();
+});
+document.addEventListener('click', e => {
+  if (!res.hidden && !res.contains(e.target) && e.target !== campo) res.hidden = true;
+});
+document.querySelectorAll('.chips button').forEach(c =>
+  c.addEventListener('click', () => abrir(c.dataset.ir, c.dataset.passo)));
+
+/* ---------- checklist de publicação ---------- */
+(() => {
+  const caixas = [...document.querySelectorAll('[data-check]')];
+  if (!caixas.length) return;
+  const contador = document.getElementById('check-contador');
+  const limpar = document.getElementById('check-limpar');
+  const CHAVE = 'agaclube-check';
+
+  const ler = () => {
+    try { return JSON.parse(localStorage.getItem(CHAVE) || '{}'); }
+    catch { return {}; }
+  };
+  const gravar = e => {
+    try { localStorage.setItem(CHAVE, JSON.stringify(e)); } catch {}
+  };
+
+  function contar() {
+    contador.textContent = `${caixas.filter(c => c.checked).length} de ${caixas.length}`;
+  }
+
+  const salvo = ler();
+  caixas.forEach(c => {
+    c.checked = !!salvo[c.dataset.check];
+    c.addEventListener('change', () => {
+      const e = ler();
+      e[c.dataset.check] = c.checked;
+      gravar(e);
+      contar();
+    });
+  });
+  limpar.addEventListener('click', () => {
+    caixas.forEach(c => c.checked = false);
+    gravar({});
+    contar();
+  });
+  document.querySelectorAll('.check-lista .ver').forEach(b =>
+    b.addEventListener('click', () => abrir(b.dataset.ir, b.dataset.passo)));
+  contar();
+})();
+
+/* ---------- índice recolhível no celular ---------- */
+if (window.matchMedia('(max-width:1000px)').matches) {
+  document.querySelectorAll('nav.lado').forEach(nav => {
+    const det = document.createElement('details');
+    det.className = 'indice';
+    det.innerHTML = '<summary>Índice do guia</summary><div class="conteudo"></div>';
+    det.querySelector('.conteudo').append(...nav.childNodes);
+    nav.append(det);
+    nav.addEventListener('click', e => { if (e.target.closest('a')) det.open = false; });
+  });
+}
+
+/* ---------- item ativo no índice ---------- */
+const links = new Map([...document.querySelectorAll('nav.lado a[href^="#"]')]
+  .map(a => [a.getAttribute('href').slice(1), a]));
+const obs = new IntersectionObserver(es => es.forEach(e => {
+  const a = links.get(e.target.id);
+  if (a && e.isIntersecting) {
+    a.closest('ol').querySelectorAll('a').forEach(l => l.classList.remove('ativo'));
+    a.classList.add('ativo');
+  }
+}), { rootMargin: '-100px 0px -70% 0px' });
+document.querySelectorAll('.passo').forEach(p => obs.observe(p));
+</script>
+</body>
+</html>
