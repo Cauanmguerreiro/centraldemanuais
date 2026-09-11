@@ -4,26 +4,90 @@ const toggle = document.getElementById("menu-toggle");
 const closeButton = document.getElementById("sidebar-close");
 const overlay = document.getElementById("sidebar-overlay");
 const mobile = window.matchMedia("(max-width:1080px)");
+let lastFocusedElement = null;
 
-function setSidebar(open) {
+/* Camada visual autoral carregada separadamente para manter a arquitetura estática simples. */
+const editorialStylesheet = document.createElement("link");
+editorialStylesheet.rel = "stylesheet";
+editorialStylesheet.href = "assets/css/editorial.css";
+document.head.append(editorialStylesheet);
+
+/* Nomes completos para a sinalização da central. */
+const navLabels = {
+  "index.html": "Visão geral",
+  "campanhas.html": "Campanhas de desconto",
+  "produtos.html": "Cadastro de produtos",
+  "lojas.html": "Cadastro de lojas"
+};
+document.querySelectorAll(".topo-nav a").forEach(link => {
+  const href = link.getAttribute("href");
+  if (navLabels[href]) link.textContent = navLabels[href];
+});
+
+function sidebarFocusable() {
+  if (!sidebar) return [];
+  return [...sidebar.querySelectorAll('a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])')]
+    .filter(element => !element.hidden && element.offsetParent !== null);
+}
+
+function syncSidebarAccessibility(open = body.classList.contains("sidebar-open")) {
+  if (!sidebar) return;
+  if (mobile.matches) sidebar.setAttribute("aria-hidden", String(!open));
+  else sidebar.removeAttribute("aria-hidden");
+}
+
+function setSidebar(open, options = {}) {
   const shouldOpen = Boolean(open && mobile.matches);
+  const wasOpen = body.classList.contains("sidebar-open");
+
+  if (shouldOpen && !wasOpen) lastFocusedElement = document.activeElement;
   body.classList.toggle("sidebar-open", shouldOpen);
   toggle?.setAttribute("aria-expanded", String(shouldOpen));
   if (overlay) overlay.hidden = !shouldOpen;
+  syncSidebarAccessibility(shouldOpen);
+
+  if (shouldOpen) {
+    requestAnimationFrame(() => (closeButton || sidebarFocusable()[0])?.focus());
+  } else if (wasOpen && options.restoreFocus !== false && lastFocusedElement instanceof HTMLElement) {
+    lastFocusedElement.focus();
+  }
 }
 
 toggle?.addEventListener("click", () => setSidebar(!body.classList.contains("sidebar-open")));
 closeButton?.addEventListener("click", () => setSidebar(false));
 overlay?.addEventListener("click", () => setSidebar(false));
 sidebar?.addEventListener("click", event => {
-  if (event.target.closest("a") && mobile.matches) setSidebar(false);
+  if (event.target.closest("a") && mobile.matches) setSidebar(false, { restoreFocus: false });
 });
+
 document.addEventListener("keydown", event => {
-  if (event.key === "Escape") setSidebar(false);
+  if (event.key === "Escape" && body.classList.contains("sidebar-open")) {
+    event.preventDefault();
+    setSidebar(false);
+    return;
+  }
+
+  if (event.key === "Tab" && body.classList.contains("sidebar-open")) {
+    const focusable = sidebarFocusable();
+    if (!focusable.length) return;
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
+    }
+  }
 });
+
 mobile.addEventListener("change", event => {
-  if (!event.matches) setSidebar(false);
+  if (!event.matches) setSidebar(false, { restoreFocus: false });
+  syncSidebarAccessibility(false);
 });
+syncSidebarAccessibility(false);
 
 /* Contato com o setor — somente encaminhamento para WhatsApp. */
 const contactButton = document.createElement("button");
@@ -71,7 +135,7 @@ document.body.insertAdjacentHTML("beforeend", `
         <textarea name="descricao" rows="5" required placeholder="Descreva o problema e, se possível, informe em qual etapa ele ocorreu."></textarea>
       </label>
 
-      <p class="contact-note">As informações não são salvas. Ao continuar, a mensagem será aberta no WhatsApp.</p>
+      <p class="contact-note">As informações não são salvas neste site. Ao continuar, a mensagem será apenas preparada e aberta no WhatsApp para sua conferência.</p>
       <div class="contact-actions">
         <button class="contact-cancel" type="button">Cancelar</button>
         <button class="contact-submit" type="submit">Continuar no WhatsApp</button>
@@ -88,7 +152,7 @@ function closeContact() {
 }
 
 contactButton.addEventListener("click", () => {
-  setSidebar(false);
+  setSidebar(false, { restoreFocus: false });
   contactDialog?.showModal();
   contactForm?.querySelector("input")?.focus();
 });
