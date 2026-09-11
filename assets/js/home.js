@@ -15,38 +15,160 @@ function abrirGuia(guia, passo) {
 const res = document.getElementById("res");
 const campo = document.getElementById("busca");
 const semAcento = texto => texto.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+let activeSearchIndex = -1;
 
-function pintar(lista) {
-  if (!lista.length) {
-    res.innerHTML = '<p class="nada">Nenhum tópico encontrado. Abra um dos guias abaixo para ver o passo a passo completo.</p>';
-    res.hidden = false;
+if (res && campo) {
+  res.setAttribute("role", "listbox");
+  res.setAttribute("aria-label", "Resultados da busca");
+  campo.setAttribute("aria-controls", "res");
+  campo.setAttribute("aria-expanded", "false");
+}
+
+function escaparHTML(texto) {
+  return String(texto)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+}
+
+function destacar(texto, termoOriginal) {
+  const seguro = escaparHTML(texto);
+  const termo = termoOriginal.trim();
+  if (!termo) return seguro;
+
+  const palavras = termo.split(/\s+/).filter(Boolean).map(palavra => palavra.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"));
+  if (!palavras.length) return seguro;
+
+  const regex = new RegExp(`(${palavras.join("|")})`, "gi");
+  return seguro.replace(regex, "<mark>$1</mark>");
+}
+
+function numeroPasso(passo) {
+  const numero = String(passo).match(/(\d+)$/)?.[1];
+  return numero ? `Passo ${Number(numero)}` : "Checklist";
+}
+
+function botoesBusca() {
+  return [...(res?.querySelectorAll("button[data-ir]") || [])];
+}
+
+function atualizarAtivo(novoIndice) {
+  const botoes = botoesBusca();
+  botoes.forEach(botao => botao.classList.remove("search-active"));
+  if (!botoes.length) {
+    activeSearchIndex = -1;
     return;
   }
 
-  res.innerHTML = lista.slice(0, 8).map(topico =>
-    `<button type="button" data-ir="${topico.guia}" data-passo="${topico.passo}">
-      <span class="q">${topico.q}</span>
-      <span class="g">${topico.nome}</span>
-    </button>`
-  ).join("");
+  activeSearchIndex = Math.max(0, Math.min(novoIndice, botoes.length - 1));
+  const ativo = botoes[activeSearchIndex];
+  ativo.classList.add("search-active");
+  ativo.focus();
+}
+
+function esconderResultados() {
+  if (!res || !campo) return;
+  res.hidden = true;
+  campo.setAttribute("aria-expanded", "false");
+  activeSearchIndex = -1;
+}
+
+function pintar(lista, termoOriginal) {
+  if (!res || !campo) return;
+
+  if (!lista.length) {
+    res.innerHTML = '<p class="nada">Nenhum tópico encontrado. Abra um dos guias abaixo para consultar o processo completo.</p>';
+    res.hidden = false;
+    campo.setAttribute("aria-expanded", "true");
+    activeSearchIndex = -1;
+    return;
+  }
+
+  const limitados = lista.slice(0, 12);
+  const grupos = new Map();
+  limitados.forEach(topico => {
+    if (!grupos.has(topico.nome)) grupos.set(topico.nome, []);
+    grupos.get(topico.nome).push(topico);
+  });
+
+  res.innerHTML = [...grupos.entries()].map(([nome, topicos]) => `
+    <section class="res-group" aria-label="${escaparHTML(nome)}">
+      <p class="res-group-title">${escaparHTML(nome)}</p>
+      ${topicos.map(topico => `
+        <button type="button" role="option" data-ir="${topico.guia}" data-passo="${topico.passo}">
+          <span class="q">${destacar(topico.q, termoOriginal)}</span>
+          <span class="g">${numeroPasso(topico.passo)}</span>
+        </button>
+      `).join("")}
+    </section>
+  `).join("");
+
   res.hidden = false;
+  campo.setAttribute("aria-expanded", "true");
+  activeSearchIndex = -1;
 }
 
 campo?.addEventListener("input", () => {
-  const termo = semAcento(campo.value.trim());
+  const termoOriginal = campo.value.trim();
+  const termo = semAcento(termoOriginal);
   if (termo.length < 2) {
-    res.hidden = true;
+    esconderResultados();
     return;
   }
-  pintar(TOPICOS.filter(item => semAcento(item.q + " " + item.nome).includes(termo)));
+
+  const lista = TOPICOS.filter(item => semAcento(item.q + " " + item.nome).includes(termo));
+  pintar(lista, termoOriginal);
 });
 
 campo?.addEventListener("keydown", event => {
+  const botoes = botoesBusca();
+
   if (event.key === "Escape") {
     campo.value = "";
-    res.hidden = true;
+    esconderResultados();
+    campo.focus();
+    return;
   }
-  if (event.key === "Enter") res.querySelector("button")?.click();
+
+  if (event.key === "ArrowDown" && botoes.length) {
+    event.preventDefault();
+    atualizarAtivo(activeSearchIndex < 0 ? 0 : activeSearchIndex + 1);
+    return;
+  }
+
+  if (event.key === "ArrowUp" && botoes.length) {
+    event.preventDefault();
+    atualizarAtivo(activeSearchIndex < 0 ? botoes.length - 1 : activeSearchIndex - 1);
+    return;
+  }
+
+  if (event.key === "Enter") {
+    const alvo = activeSearchIndex >= 0 ? botoes[activeSearchIndex] : botoes[0];
+    if (alvo) {
+      event.preventDefault();
+      alvo.click();
+    }
+  }
+});
+
+res?.addEventListener("keydown", event => {
+  if (!event.target.closest("button[data-ir]")) return;
+  const botoes = botoesBusca();
+  const atual = botoes.indexOf(event.target.closest("button[data-ir]"));
+
+  if (event.key === "ArrowDown") {
+    event.preventDefault();
+    atualizarAtivo(atual + 1 >= botoes.length ? 0 : atual + 1);
+  } else if (event.key === "ArrowUp") {
+    event.preventDefault();
+    atualizarAtivo(atual - 1 < 0 ? botoes.length - 1 : atual - 1);
+  } else if (event.key === "Escape") {
+    event.preventDefault();
+    esconderResultados();
+    campo?.focus();
+  }
 });
 
 document.addEventListener("click", event => {
@@ -55,5 +177,5 @@ document.addEventListener("click", event => {
     abrirGuia(destino.dataset.guia || destino.dataset.ir, destino.dataset.passo);
     return;
   }
-  if (!res.hidden && !res.contains(event.target) && event.target !== campo) res.hidden = true;
+  if (res && !res.hidden && !res.contains(event.target) && event.target !== campo) esconderResultados();
 });
