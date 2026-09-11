@@ -12,6 +12,13 @@ editorialStylesheet.rel = "stylesheet";
 editorialStylesheet.href = "assets/css/editorial.css";
 document.head.append(editorialStylesheet);
 
+if (body.dataset.page && body.dataset.page !== "home") {
+  const guideEditorialScript = document.createElement("script");
+  guideEditorialScript.src = "assets/js/guide-editorial.js";
+  guideEditorialScript.defer = true;
+  document.head.append(guideEditorialScript);
+}
+
 /* Nomes completos para a sinalização da central. */
 const navLabels = {
   "index.html": "Visão geral",
