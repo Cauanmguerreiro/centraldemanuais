@@ -10,29 +10,39 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/styles.css">
+  <script src="assets/js/shell.js" defer></script>
   <script src="assets/js/guide.js" defer></script>
 </head>
 <body data-page="produtos">
 <div class="faixa" aria-hidden="true"><i></i><i></i></div>
-<header>
+<button class="menu-toggle" id="menu-toggle" type="button" aria-controls="sidebar" aria-expanded="false">
+  <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
+  <span class="sr-only">Abrir navegação</span>
+</button>
+<div class="sidebar-overlay" id="sidebar-overlay" hidden></div>
+<aside class="app-sidebar" id="sidebar" aria-label="Navegação principal">
   <div class="barra">
+    <button class="sidebar-close" id="sidebar-close" type="button" aria-label="Fechar navegação">×</button>
     <a class="marca-link" href="index.html" aria-label="AgaClube Help — página inicial">
       <img class="marca" src="midia/logo-agafarma.png" alt="">
       <span class="nome">AgaClube Help<small>Central de ajuda do painel</small></span>
     </a>
+    <p class="sidebar-kicker">Manuais operacionais</p>
     <nav class="topo-nav" aria-label="Guias principais">
+      <a href="index.html">Visão geral</a>
       <a href="campanhas.html">Campanhas</a>
       <a href="produtos.html" aria-current="page">Produtos</a>
       <a href="lojas.html">Lojas</a>
     </nav>
-    <a class="voltar" href="index.html">Voltar para a central</a>
+    <img class="setor" src="midia/logo-inovacao.png" alt="Inovação e Desenvolvimento">
   </div>
-</header>
+</aside>
+<div class="app-main">
 <section class="guia" id="guia-produtos">
   <div class="wrap">
     <nav class="lado" aria-label="Índice de Cadastro de Novos Produtos"><h3>Cadastro de Novos Produtos</h3><ol><li><a href="#prod-01"><em>1</em>Acesse Produtos Cadastrados</a></li><li><a href="#prod-02"><em>2</em>Reconheça a listagem</a></li><li><a href="#prod-03"><em>3</em>Informe o nome do produto</a></li><li><a href="#prod-04"><em>4</em>Informe o EAN</a></li><li><a href="#prod-05"><em>5</em>Ético ou Popular, PBM e Mercado</a></li><li><a href="#prod-06"><em>6</em>Abra a lista de linhas de produto</a></li><li><a href="#prod-07"><em>7</em>Busque e confirme a linha</a></li><li><a href="#prod-08"><em>8</em>Abra a Classificação Hierárquica</a></li><li><a href="#prod-09"><em>9</em>Marque a classificação</a></li><li><a href="#prod-10"><em>10</em>Informações Adicionais e criação</a></li><li><a href="#prod-11"><em>11</em>Valide o cadastro</a></li><li><a href="#prod-12"><em>12</em>Confira pela busca</a></li></ol></nav>
     <main>
-      <p class="migalha"><button type="button" class="ir-home">Central de ajuda</button> &rsaquo; Cadastro de Novos Produtos</p>
+      <p class="migalha"><a href="index.html">Central de ajuda</a> &rsaquo; Cadastro de Novos Produtos</p>
       <div class="titulo-guia"><h2>Cadastro de Novos Produtos</h2><p>Como cadastrar novos produtos no sistema.</p></div>
       <section class="apoio">
         <div class="apoio-topo">
@@ -69,5 +79,6 @@
   <span>Documento de apoio · Inovação e Desenvolvimento · Agafarma</span>
   <span>Dúvida ou divergência no sistema: acione o I&amp;D.</span>
 </div></footer>
+</div>
 </body>
 </html>

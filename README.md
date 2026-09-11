@@ -8,7 +8,8 @@ Central estática de apoio ao painel Agafarma.
 - `campanhas.html`: campanhas de desconto.
 - `produtos.html`: cadastro de novos produtos.
 - `lojas.html`: cadastro de loja e integração.
-- `assets/css/styles.css`: identidade visual compartilhada.
+- `assets/css/styles.css`: identidade visual, barra lateral e responsividade.
+- `assets/js/shell.js`: abertura e fechamento acessível da barra lateral no celular.
 - `assets/js/home.js`: busca e navegação da página inicial.
 - `assets/js/guide.js`: mídia, checklist e navegação interna dos guias.
 - `config/database.example.js`: placeholder não carregado pelo site.
