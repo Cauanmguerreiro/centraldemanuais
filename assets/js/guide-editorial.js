@@ -1,4 +1,9 @@
 (() => {
+  const guideStylesheet = document.createElement("link");
+  guideStylesheet.rel = "stylesheet";
+  guideStylesheet.href = "assets/css/guide-editorial.css";
+  document.head.append(guideStylesheet);
+
   function textoDoPasso(link) {
     if (!link) return "Índice do guia";
     const numero = link.querySelector("em")?.textContent.trim();
@@ -37,20 +42,71 @@
     });
   }
 
-  function marcarImagensAmpliaveis() {
-    document.querySelectorAll(".quadro img").forEach(img => {
-      img.title = img.title || "Clique para abrir a imagem em tamanho maior";
+  function prepararVisualizadorDeImagens() {
+    const imagens = [...document.querySelectorAll(".quadro img")];
+    if (!imagens.length) return;
+
+    document.body.insertAdjacentHTML("beforeend", `
+      <dialog class="media-dialog" id="media-dialog" aria-labelledby="media-dialog-title">
+        <div class="media-dialog-head">
+          <p id="media-dialog-title">Captura do sistema</p>
+          <button class="media-dialog-close" type="button" aria-label="Fechar imagem ampliada">×</button>
+        </div>
+        <figure><img src="" alt=""></figure>
+      </dialog>
+    `);
+
+    const dialog = document.getElementById("media-dialog");
+    const dialogImage = dialog?.querySelector("img");
+    const dialogTitle = dialog?.querySelector("#media-dialog-title");
+    const closeButton = dialog?.querySelector(".media-dialog-close");
+    let origem = null;
+
+    function fechar() {
+      dialog?.close();
+    }
+
+    function abrir(img) {
+      if (!dialog || !dialogImage || !dialogTitle) return;
+      origem = img;
+      dialogImage.src = img.currentSrc || img.src;
+      dialogImage.alt = img.alt || "Captura do sistema ampliada";
+      dialogTitle.textContent = img.alt || "Captura do sistema";
+      dialog.showModal();
+      closeButton?.focus();
+    }
+
+    imagens.forEach(img => {
+      img.title = img.title || "Abrir imagem em tamanho maior";
       img.setAttribute("data-ampliavel", "true");
+      img.setAttribute("role", "button");
+      img.setAttribute("tabindex", "0");
+      img.setAttribute("aria-label", `${img.alt || "Captura do sistema"}. Abrir imagem em tamanho maior.`);
+
+      img.addEventListener("click", () => abrir(img));
+      img.addEventListener("keydown", event => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          abrir(img);
+        }
+      });
+    });
+
+    closeButton?.addEventListener("click", fechar);
+    dialog?.addEventListener("click", event => {
+      if (event.target === dialog) fechar();
+    });
+    dialog?.addEventListener("close", () => {
+      dialogImage?.removeAttribute("src");
+      origem?.focus();
     });
   }
 
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", () => {
-      prepararIndice();
-      marcarImagensAmpliaveis();
-    });
-  } else {
+  function iniciar() {
     prepararIndice();
-    marcarImagensAmpliaveis();
+    prepararVisualizadorDeImagens();
   }
+
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", iniciar);
+  else iniciar();
 })();
