@@ -10,24 +10,34 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/styles.css">
+  <script src="assets/js/shell.js" defer></script>
   <script src="assets/js/home.js" defer></script>
 </head>
 <body data-page="home">
 <div class="faixa" aria-hidden="true"><i></i><i></i></div>
-<header>
+<button class="menu-toggle" id="menu-toggle" type="button" aria-controls="sidebar" aria-expanded="false">
+  <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
+  <span class="sr-only">Abrir navegação</span>
+</button>
+<div class="sidebar-overlay" id="sidebar-overlay" hidden></div>
+<aside class="app-sidebar" id="sidebar" aria-label="Navegação principal">
   <div class="barra">
+    <button class="sidebar-close" id="sidebar-close" type="button" aria-label="Fechar navegação">×</button>
     <a class="marca-link" href="index.html" aria-label="AgaClube Help — página inicial">
       <img class="marca" src="midia/logo-agafarma.png" alt="">
       <span class="nome">AgaClube Help<small>Central de ajuda do painel</small></span>
     </a>
+    <p class="sidebar-kicker">Manuais operacionais</p>
     <nav class="topo-nav" aria-label="Guias principais">
+      <a href="index.html" aria-current="page">Visão geral</a>
       <a href="campanhas.html">Campanhas</a>
       <a href="produtos.html">Produtos</a>
       <a href="lojas.html">Lojas</a>
     </nav>
     <img class="setor" src="midia/logo-inovacao.png" alt="Inovação e Desenvolvimento">
   </div>
-</header>
+</aside>
+<div class="app-main">
 <section class="home" id="home">
   <div class="capa">
     <h1>Como fazer no painel Agafarma</h1>
@@ -68,5 +78,6 @@
   <span>Documento de apoio · Inovação e Desenvolvimento · Agafarma</span>
   <span>Dúvida ou divergência no sistema: acione o I&amp;D.</span>
 </div></footer>
+</div>
 </body>
 </html>

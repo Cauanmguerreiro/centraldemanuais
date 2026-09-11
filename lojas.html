@@ -10,29 +10,39 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/styles.css">
+  <script src="assets/js/shell.js" defer></script>
   <script src="assets/js/guide.js" defer></script>
 </head>
 <body data-page="lojas">
 <div class="faixa" aria-hidden="true"><i></i><i></i></div>
-<header>
+<button class="menu-toggle" id="menu-toggle" type="button" aria-controls="sidebar" aria-expanded="false">
+  <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
+  <span class="sr-only">Abrir navegação</span>
+</button>
+<div class="sidebar-overlay" id="sidebar-overlay" hidden></div>
+<aside class="app-sidebar" id="sidebar" aria-label="Navegação principal">
   <div class="barra">
+    <button class="sidebar-close" id="sidebar-close" type="button" aria-label="Fechar navegação">×</button>
     <a class="marca-link" href="index.html" aria-label="AgaClube Help — página inicial">
       <img class="marca" src="midia/logo-agafarma.png" alt="">
       <span class="nome">AgaClube Help<small>Central de ajuda do painel</small></span>
     </a>
+    <p class="sidebar-kicker">Manuais operacionais</p>
     <nav class="topo-nav" aria-label="Guias principais">
+      <a href="index.html">Visão geral</a>
       <a href="campanhas.html">Campanhas</a>
       <a href="produtos.html">Produtos</a>
       <a href="lojas.html" aria-current="page">Lojas</a>
     </nav>
-    <a class="voltar" href="index.html">Voltar para a central</a>
+    <img class="setor" src="midia/logo-inovacao.png" alt="Inovação e Desenvolvimento">
   </div>
-</header>
+</aside>
+<div class="app-main">
 <section class="guia" id="guia-lojas">
   <div class="wrap">
     <nav class="lado" aria-label="Índice de Cadastro de Loja"><h3>Cadastro de Loja</h3><ol><li><a href="#loj-01"><em>1</em>Acesse a listagem de lojas</a></li><li><a href="#loj-02"><em>2</em>Informações da Loja</a></li><li><a href="#loj-03"><em>3</em>Endereço</a></li><li><a href="#loj-04"><em>4</em>Telefones</a></li><li><a href="#loj-05"><em>5</em>Propriedades</a></li><li><a href="#loj-06"><em>6</em>Salve o cadastro</a></li><li><a href="#loj-07"><em>7</em>Confira em Ver Detalhes</a></li><li><a href="#loj-08"><em>8</em>Credenciais</a></li><li><a href="#loj-09"><em>9</em>Trier — Integração Parceiros</a></li><li><a href="#loj-10"><em>10</em>Trier — Configurações do integrador</a></li></ol></nav>
     <main>
-      <p class="migalha"><button type="button" class="ir-home">Central de ajuda</button> &rsaquo; Cadastro de Loja</p>
+      <p class="migalha"><a href="index.html">Central de ajuda</a> &rsaquo; Cadastro de Loja</p>
       <div class="titulo-guia"><h2>Cadastro de Loja</h2><p>Da criação da unidade no painel à aplicação da credencial no Trier.</p></div>
       <section class="apoio">
         <div class="apoio-topo">
@@ -69,5 +79,6 @@
   <span>Documento de apoio · Inovação e Desenvolvimento · Agafarma</span>
   <span>Dúvida ou divergência no sistema: acione o I&amp;D.</span>
 </div></footer>
+</div>
 </body>
 </html>
