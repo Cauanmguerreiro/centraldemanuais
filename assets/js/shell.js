@@ -1,3 +1,5 @@
+(function () {
+"use strict";
 const body = document.body;
 const sidebar = document.getElementById("sidebar");
 const toggle = document.getElementById("menu-toggle");
@@ -190,3 +192,5 @@ contactForm.addEventListener("submit", function (event) {
   window.open(url, "_blank", "noopener,noreferrer");
   closeContact();
 });
+
+})();
