@@ -23,6 +23,7 @@ if (body.dataset.page && body.dataset.page !== "home") {
 const navLabels = {
   "index.html": "Visão geral",
   "campanhas.html": "Campanhas de desconto",
+  "clube-v3.html": "Clube Agafarma V3",
   "produtos.html": "Cadastro de produtos",
   "lojas.html": "Cadastro de lojas"
 };
