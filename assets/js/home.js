@@ -1,32 +1,20 @@
-const TOPICOS = [{"q":"Como publicar um segmento V3","passo":"etapa-8","guia":"clube-v3","nome":"Clube Agafarma V3"},{"q":"Como criar segmento de clientes","passo":"etapa-2","guia":"clube-v3","nome":"Clube Agafarma V3"},{"q":"Como definir regras da audiência","passo":"etapa-3","guia":"clube-v3","nome":"Clube Agafarma V3"},{"q":"Como selecionar produtos no catálogo V3","passo":"etapa-5","guia":"clube-v3","nome":"Clube Agafarma V3"},{"q":"Como escolher público da campanha segmentada","passo":"etapa-15","guia":"clube-v3","nome":"Clube Agafarma V3"},{"q":"Como definir produtos e preços no Clube V3","passo":"etapa-16","guia":"clube-v3","nome":"Clube Agafarma V3"},{"q":"Como selecionar lojas na campanha V3","passo":"etapa-17","guia":"clube-v3","nome":"Clube Agafarma V3"},{"q":"Como publicar campanha segmentada","passo":"etapa-18","guia":"clube-v3","nome":"Clube Agafarma V3"},{"q":"Como criar uma nova campanha de desconto","passo":"camp-04","guia":"campanhas","nome":"Campanhas de Desconto"},{"q":"Como escolher entre EAN, classificação hierárquica e marca","passo":"camp-05","guia":"campanhas","nome":"Campanhas de Desconto"},{"q":"Como definir o preço da campanha","passo":"camp-07","guia":"campanhas","nome":"Campanhas de Desconto"},{"q":"O que faz a opção Permitir preço abaixo do custo","passo":"camp-07","guia":"campanhas","nome":"Campanhas de Desconto"},{"q":"Como definir o período de vigência","passo":"camp-08","guia":"campanhas","nome":"Campanhas de Desconto"},{"q":"Como incluir todas as lojas de um estado de uma vez","passo":"camp-10","guia":"campanhas","nome":"Campanhas de Desconto"},{"q":"Como remover uma loja da campanha","passo":"camp-11","guia":"campanhas","nome":"Campanhas de Desconto"},{"q":"Como importar EANs por planilha","passo":"camp-13","guia":"campanhas","nome":"Campanhas de Desconto"},{"q":"Como digitar EANs manualmente","passo":"camp-13","guia":"campanhas","nome":"Campanhas de Desconto"},{"q":"Como corrigir o preço de um produto importado","passo":"camp-14","guia":"campanhas","nome":"Campanhas de Desconto"},{"q":"Como alterar a vigência de um único produto","passo":"camp-14","guia":"campanhas","nome":"Campanhas de Desconto"},{"q":"Como publicar a campanha","passo":"camp-15","guia":"campanhas","nome":"Campanhas de Desconto"},{"q":"Como encerrar uma campanha ativa","passo":"camp-16","guia":"campanhas","nome":"Campanhas de Desconto"},{"q":"Onde encontro o código da campanha","passo":"camp-17","guia":"campanhas","nome":"Campanhas de Desconto"},{"q":"Como ver os produtos e as lojas de uma campanha","passo":"camp-18","guia":"campanhas","nome":"Campanhas de Desconto"},{"q":"Como conferir se a importação de EANs entrou completa","passo":"camp-18","guia":"campanhas","nome":"Campanhas de Desconto"},{"q":"Como editar uma campanha já criada","passo":"camp-19","guia":"campanhas","nome":"Campanhas de Desconto"},{"q":"Onde vejo se a campanha está em rascunho ou ativa","passo":"camp-03","guia":"campanhas","nome":"Campanhas de Desconto"},{"q":"Como cadastrar um produto novo","passo":"prod-02","guia":"produtos","nome":"Cadastro de Novos Produtos"},{"q":"Como saber se o produto já está cadastrado","passo":"prod-02","guia":"produtos","nome":"Cadastro de Novos Produtos"},{"q":"Onde informo o nome do produto","passo":"prod-03","guia":"produtos","nome":"Cadastro de Novos Produtos"},{"q":"Onde informo o EAN do produto","passo":"prod-04","guia":"produtos","nome":"Cadastro de Novos Produtos"},{"q":"O que é Ético ou Popular","passo":"prod-05","guia":"produtos","nome":"Cadastro de Novos Produtos"},{"q":"Como escolher a linha do produto","passo":"prod-07","guia":"produtos","nome":"Cadastro de Novos Produtos"},{"q":"Como definir a classificação hierárquica","passo":"prod-09","guia":"produtos","nome":"Cadastro de Novos Produtos"},{"q":"Quantas classificações posso selecionar","passo":"prod-09","guia":"produtos","nome":"Cadastro de Novos Produtos"},{"q":"Como conferir se o produto foi salvo","passo":"prod-12","guia":"produtos","nome":"Cadastro de Novos Produtos"},{"q":"Como evitar cadastro duplicado","passo":"prod-12","guia":"produtos","nome":"Cadastro de Novos Produtos"},{"q":"O que fazer quando o produto não aparece na campanha","passo":"prod-01","guia":"produtos","nome":"Cadastro de Novos Produtos"},{"q":"Como acessar a listagem de lojas","passo":"loj-01","guia":"lojas","nome":"Cadastro de Loja"},{"q":"Onde cadastrar uma nova unidade","passo":"loj-01","guia":"lojas","nome":"Cadastro de Loja"},{"q":"Quais informações preencher na loja","passo":"loj-02","guia":"lojas","nome":"Cadastro de Loja"},{"q":"Onde informo o código da unidade","passo":"loj-02","guia":"lojas","nome":"Cadastro de Loja"},{"q":"Como cadastrar o endereço da loja","passo":"loj-03","guia":"lojas","nome":"Cadastro de Loja"},{"q":"Como incluir mais de um telefone","passo":"loj-04","guia":"lojas","nome":"Cadastro de Loja"},{"q":"Como marcar que a loja participa do Clube Agafarma","passo":"loj-05","guia":"lojas","nome":"Cadastro de Loja"},{"q":"Onde ver os detalhes de uma loja","passo":"loj-07","guia":"lojas","nome":"Cadastro de Loja"},{"q":"Como gerar as credenciais da loja","passo":"loj-08","guia":"lojas","nome":"Cadastro de Loja"},{"q":"Perdi a senha da credencial da loja","passo":"loj-08","guia":"lojas","nome":"Cadastro de Loja"},{"q":"Como aplicar a credencial no Trier","passo":"loj-10","guia":"lojas","nome":"Cadastro de Loja"},{"q":"Qual a URL do webservice do Clube","passo":"loj-10","guia":"lojas","nome":"Cadastro de Loja"}];
-
-const ROTAS = {
-  "clube-v3": "clube-v3.html",
-  campanhas: "campanhas.html",
-  produtos: "produtos.html",
-  lojas: "lojas.html"
-};
-
-function abrirGuia(guia, passo) {
-  const pagina = ROTAS[guia];
-  if (!pagina) return;
-  window.location.href = pagina + (passo ? "#" + passo : "");
-}
-
-const res = document.getElementById("res");
-const campo = document.getElementById("busca");
-const semAcento = texto => texto.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+const catalog = Array.isArray(window.AGA_MANUALS) ? window.AGA_MANUALS : [];
+const routes = Object.fromEntries(catalog.map(function (item) { return [item.key, item.href]; }));
+const guideData = new Map();
+let searchIndex = [];
+let indexReady = false;
 let activeSearchIndex = -1;
 
-if (res && campo) {
-  res.setAttribute("role", "listbox");
-  res.setAttribute("aria-label", "Resultados da busca");
-  campo.setAttribute("aria-controls", "res");
-  campo.setAttribute("aria-expanded", "false");
+const results = document.getElementById("res");
+const searchInput = document.getElementById("busca");
+const cards = document.getElementById("guide-cards");
+
+function normalizeText(value) {
+  return String(value || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
 }
 
-function escaparHTML(texto) {
-  return String(texto)
+function escapeHTML(value) {
+  return String(value)
     .replaceAll("&", "&amp;")
     .replaceAll("<", "&lt;")
     .replaceAll(">", "&gt;")
@@ -34,149 +22,311 @@ function escaparHTML(texto) {
     .replaceAll("'", "&#039;");
 }
 
-function destacar(texto, termoOriginal) {
-  const seguro = escaparHTML(texto);
-  const termo = termoOriginal.trim();
-  if (!termo) return seguro;
-
-  const palavras = termo.split(/\s+/).filter(Boolean).map(palavra => palavra.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"));
-  if (!palavras.length) return seguro;
-
-  const regex = new RegExp(`(${palavras.join("|")})`, "gi");
-  return seguro.replace(regex, "<mark>$1</mark>");
+function htmlToText(html) {
+  if (!html) return "";
+  const doc = new DOMParser().parseFromString(String(html), "text/html");
+  return doc.body.textContent || "";
 }
 
-function numeroPasso(passo) {
-  const numero = String(passo).match(/(\d+)$/)?.[1];
-  return numero ? `Passo ${Number(numero)}` : "Checklist";
+function regexEscape(value) {
+  return String(value).replace(/[^a-zA-Z0-9À-ÿ]/g, function (character) {
+    return "\\" + character;
+  });
 }
 
-function botoesBusca() {
-  return [...(res?.querySelectorAll("button[data-ir]") || [])];
+function iconMarkup(icon) {
+  const icons = {
+    campaign: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11v2a1 1 0 0 0 1 1h2l4 4V6L6 10H4a1 1 0 0 0-1 1Z"/><path d="M14 8.5a4 4 0 0 1 0 7"/><path d="M17 5.5a8 8 0 0 1 0 13"/></svg>',
+    product: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4 7v10l8 4 8-4V7Z"/><path d="M4 7l8 4 8-4"/><path d="M12 11v10"/></svg>',
+    store: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l2-5h14l2 5"/><path d="M5 13v8h14v-8"/><path d="M9 21v-6h6v6"/><path d="M3 9a3 3 0 0 0 6 0 3 3 0 0 0 6 0 3 3 0 0 0 6 0"/></svg>',
+    target: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/><path d="M12 2v3M22 12h-3M12 22v-3M2 12h3"/></svg>'
+  };
+  return icons[icon] || icons.target;
 }
 
-function atualizarAtivo(novoIndice) {
-  const botoes = botoesBusca();
-  botoes.forEach(botao => botao.classList.remove("search-active"));
-  if (!botoes.length) {
-    activeSearchIndex = -1;
-    return;
-  }
+function renderCards() {
+  if (!cards) return;
 
-  activeSearchIndex = Math.max(0, Math.min(novoIndice, botoes.length - 1));
-  const ativo = botoes[activeSearchIndex];
-  ativo.classList.add("search-active");
-  ativo.focus();
+  cards.innerHTML = catalog.map(function (item) {
+    const data = guideData.get(item.key);
+    const count = data && data.steps ? data.steps.length + " etapas" : "Manual interativo";
+    const className = ["card", item.accent || ""].filter(Boolean).join(" ");
+    const bullets = item.bullets.map(function (bullet) {
+      return "<li>" + escapeHTML(bullet) + "</li>";
+    }).join("");
+
+    return '<a class="' + className + '" href="' + escapeHTML(item.href) + '">' +
+      '<span class="ico">' + iconMarkup(item.icon) + '</span>' +
+      '<h3>' + escapeHTML(item.title) + '</h3>' +
+      '<p>' + escapeHTML(item.description) + '</p>' +
+      '<ul>' + bullets + '</ul>' +
+      '<span class="pe"><span class="qtd">' + count + '</span><span class="abrir">Abrir guia</span></span>' +
+    '</a>';
+  }).join("");
 }
 
-function esconderResultados() {
-  if (!res || !campo) return;
-  res.hidden = true;
-  campo.setAttribute("aria-expanded", "false");
-  activeSearchIndex = -1;
+function buildStepSearch(entry, data) {
+  return (data.steps || []).map(function (step, position) {
+    const section = (data.sections || []).find(function (item) { return item.key === step.group; });
+    const fields = (step.fields || []).flat().join(" ");
+    const actions = (step.actions || []).join(" ");
+    const captions = (step.shots || []).map(function (shot) { return shot.cap; }).join(" ");
+    const searchable = [
+      data.name,
+      entry.title,
+      section && section.short,
+      section && section.title,
+      step.title,
+      step.intro,
+      htmlToText(step.html),
+      step.warning,
+      step.tip,
+      fields,
+      actions,
+      captions
+    ].filter(Boolean).join(" ");
+
+    return {
+      guia: entry.key,
+      nome: data.name || entry.title,
+      passo: step.anchor,
+      numero: position + 1,
+      titulo: step.title,
+      intro: step.intro || "",
+      searchable: normalizeText(searchable),
+      titleSearch: normalizeText(step.title),
+      introSearch: normalizeText(step.intro)
+    };
+  });
 }
 
-function pintar(lista, termoOriginal) {
-  if (!res || !campo) return;
+async function loadGuide(entry) {
+  const response = await fetch(entry.href);
+  if (!response.ok) throw new Error(entry.href + ": HTTP " + response.status);
 
-  if (!lista.length) {
-    res.innerHTML = '<p class="nada">Nenhum tópico encontrado. Abra um dos guias abaixo para consultar o processo completo.</p>';
-    res.hidden = false;
-    campo.setAttribute("aria-expanded", "true");
-    activeSearchIndex = -1;
-    return;
-  }
+  const html = await response.text();
+  const doc = new DOMParser().parseFromString(html, "text/html");
+  const source = doc.getElementById("manual-data");
+  if (!source) throw new Error(entry.href + ": manual-data ausente");
 
-  const limitados = lista.slice(0, 12);
-  const grupos = new Map();
-  limitados.forEach(topico => {
-    if (!grupos.has(topico.nome)) grupos.set(topico.nome, []);
-    grupos.get(topico.nome).push(topico);
+  const data = JSON.parse(source.textContent);
+  guideData.set(entry.key, data);
+  return buildStepSearch(entry, data);
+}
+
+async function loadSearchIndex() {
+  const loaded = await Promise.allSettled(catalog.map(loadGuide));
+  searchIndex = loaded.flatMap(function (result) {
+    return result.status === "fulfilled" ? result.value : [];
+  });
+  indexReady = true;
+  renderCards();
+
+  if (searchInput && searchInput.value.trim().length >= 2) runSearch(searchInput.value);
+}
+
+function scoreTopic(topic, terms, original) {
+  if (!terms.every(function (term) { return topic.searchable.includes(term); })) return -1;
+
+  let score = 0;
+  const phrase = normalizeText(original);
+  if (topic.titleSearch.includes(phrase)) score += 80;
+
+  terms.forEach(function (term) {
+    if (topic.titleSearch.includes(term)) score += 18;
+    if (topic.introSearch.includes(term)) score += 6;
+    score += Math.min(3, topic.searchable.split(term).length - 1);
   });
 
-  res.innerHTML = [...grupos.entries()].map(([nome, topicos]) => `
-    <section class="res-group" aria-label="${escaparHTML(nome)}">
-      <p class="res-group-title">${escaparHTML(nome)}</p>
-      ${topicos.map(topico => `
-        <button type="button" role="option" data-ir="${topico.guia}" data-passo="${topico.passo}">
-          <span class="q">${destacar(topico.q, termoOriginal)}</span>
-          <span class="g">${numeroPasso(topico.passo)}</span>
-        </button>
-      `).join("")}
-    </section>
-  `).join("");
+  return score;
+}
 
-  res.hidden = false;
-  campo.setAttribute("aria-expanded", "true");
+function openGuide(guide, step) {
+  const page = routes[guide];
+  if (!page) return;
+  window.location.href = page + (step ? "#" + step : "");
+}
+
+function searchButtons() {
+  return [...((results && results.querySelectorAll("button[data-ir]")) || [])];
+}
+
+function setActiveResult(newIndex) {
+  const buttons = searchButtons();
+  buttons.forEach(function (button) { button.classList.remove("search-active"); });
+
+  if (!buttons.length) {
+    activeSearchIndex = -1;
+    return;
+  }
+
+  activeSearchIndex = Math.max(0, Math.min(newIndex, buttons.length - 1));
+  buttons[activeSearchIndex].classList.add("search-active");
+  buttons[activeSearchIndex].focus();
+}
+
+function hideResults() {
+  if (!results || !searchInput) return;
+  results.hidden = true;
+  searchInput.setAttribute("aria-expanded", "false");
   activeSearchIndex = -1;
 }
 
-campo?.addEventListener("input", () => {
-  const termoOriginal = campo.value.trim();
-  const termo = semAcento(termoOriginal);
-  if (termo.length < 2) {
-    esconderResultados();
+function highlight(text, original) {
+  const safe = escapeHTML(text);
+  const words = original.trim().split(/\s+/).filter(Boolean).map(regexEscape);
+  if (!words.length) return safe;
+  const regex = new RegExp("(" + words.join("|") + ")", "gi");
+  return safe.replace(regex, "<mark>$1</mark>");
+}
+
+function paintResults(list, original) {
+  if (!results || !searchInput) return;
+
+  if (!indexReady) {
+    results.innerHTML = '<p class="nada">Preparando a busca nos manuais…</p>';
+    results.hidden = false;
+    searchInput.setAttribute("aria-expanded", "true");
     return;
   }
 
-  const lista = TOPICOS.filter(item => semAcento(item.q + " " + item.nome).includes(termo));
-  pintar(lista, termoOriginal);
+  if (!list.length) {
+    results.innerHTML = '<p class="nada">Nenhuma etapa encontrada. Tente termos do processo, campo, tela ou ação que você precisa executar.</p>';
+    results.hidden = false;
+    searchInput.setAttribute("aria-expanded", "true");
+    activeSearchIndex = -1;
+    return;
+  }
+
+  const groups = new Map();
+  list.slice(0, 12).forEach(function (topic) {
+    if (!groups.has(topic.nome)) groups.set(topic.nome, []);
+    groups.get(topic.nome).push(topic);
+  });
+
+  results.innerHTML = [...groups.entries()].map(function (entry) {
+    const name = entry[0];
+    const topics = entry[1];
+    const buttons = topics.map(function (topic) {
+      return '<button type="button" role="option" data-ir="' + escapeHTML(topic.guia) + '" data-passo="' + escapeHTML(topic.passo) + '">' +
+        '<span class="q">' + highlight(topic.titulo, original) + '<small>' + escapeHTML(topic.intro) + '</small></span>' +
+        '<span class="g">Etapa ' + topic.numero + '</span>' +
+      '</button>';
+    }).join("");
+
+    return '<section class="res-group" aria-label="' + escapeHTML(name) + '">' +
+      '<p class="res-group-title">' + escapeHTML(name) + '</p>' +
+      buttons +
+    '</section>';
+  }).join("");
+
+  results.hidden = false;
+  searchInput.setAttribute("aria-expanded", "true");
+  activeSearchIndex = -1;
+}
+
+function runSearch(original) {
+  const value = String(original || "").trim();
+  const normalized = normalizeText(value);
+
+  if (normalized.length < 2) {
+    hideResults();
+    return;
+  }
+
+  if (!indexReady) {
+    paintResults([], value);
+    return;
+  }
+
+  const terms = normalized.split(/\s+/).filter(Boolean);
+  const matches = searchIndex
+    .map(function (topic) { return { topic: topic, score: scoreTopic(topic, terms, value) }; })
+    .filter(function (item) { return item.score >= 0; })
+    .sort(function (a, b) { return b.score - a.score || a.topic.numero - b.topic.numero; })
+    .map(function (item) { return item.topic; });
+
+  paintResults(matches, value);
+}
+
+renderCards();
+loadSearchIndex().catch(function () {
+  indexReady = true;
+  renderCards();
 });
 
-campo?.addEventListener("keydown", event => {
-  const botoes = botoesBusca();
+if (results && searchInput) {
+  results.setAttribute("role", "listbox");
+  results.setAttribute("aria-label", "Resultados da busca");
+  searchInput.setAttribute("aria-controls", "res");
+  searchInput.setAttribute("aria-expanded", "false");
+}
 
-  if (event.key === "Escape") {
-    campo.value = "";
-    esconderResultados();
-    campo.focus();
-    return;
-  }
+if (searchInput) {
+  searchInput.addEventListener("input", function () { runSearch(searchInput.value); });
 
-  if (event.key === "ArrowDown" && botoes.length) {
-    event.preventDefault();
-    atualizarAtivo(activeSearchIndex < 0 ? 0 : activeSearchIndex + 1);
-    return;
-  }
+  searchInput.addEventListener("keydown", function (event) {
+    const buttons = searchButtons();
 
-  if (event.key === "ArrowUp" && botoes.length) {
-    event.preventDefault();
-    atualizarAtivo(activeSearchIndex < 0 ? botoes.length - 1 : activeSearchIndex - 1);
-    return;
-  }
-
-  if (event.key === "Enter") {
-    const alvo = activeSearchIndex >= 0 ? botoes[activeSearchIndex] : botoes[0];
-    if (alvo) {
-      event.preventDefault();
-      alvo.click();
+    if (event.key === "Escape") {
+      searchInput.value = "";
+      hideResults();
+      searchInput.focus();
+      return;
     }
-  }
-});
 
-res?.addEventListener("keydown", event => {
-  if (!event.target.closest("button[data-ir]")) return;
-  const botoes = botoesBusca();
-  const atual = botoes.indexOf(event.target.closest("button[data-ir]"));
+    if (event.key === "ArrowDown" && buttons.length) {
+      event.preventDefault();
+      setActiveResult(activeSearchIndex < 0 ? 0 : activeSearchIndex + 1);
+      return;
+    }
 
-  if (event.key === "ArrowDown") {
-    event.preventDefault();
-    atualizarAtivo(atual + 1 >= botoes.length ? 0 : atual + 1);
-  } else if (event.key === "ArrowUp") {
-    event.preventDefault();
-    atualizarAtivo(atual - 1 < 0 ? botoes.length - 1 : atual - 1);
-  } else if (event.key === "Escape") {
-    event.preventDefault();
-    esconderResultados();
-    campo?.focus();
-  }
-});
+    if (event.key === "ArrowUp" && buttons.length) {
+      event.preventDefault();
+      setActiveResult(activeSearchIndex < 0 ? buttons.length - 1 : activeSearchIndex - 1);
+      return;
+    }
 
-document.addEventListener("click", event => {
-  const destino = event.target.closest("[data-guia],[data-ir]");
-  if (destino) {
-    abrirGuia(destino.dataset.guia || destino.dataset.ir, destino.dataset.passo);
+    if (event.key === "Enter") {
+      const target = activeSearchIndex >= 0 ? buttons[activeSearchIndex] : buttons[0];
+      if (target) {
+        event.preventDefault();
+        target.click();
+      }
+    }
+  });
+}
+
+if (results) {
+  results.addEventListener("keydown", function (event) {
+    const currentButton = event.target.closest("button[data-ir]");
+    if (!currentButton) return;
+
+    const buttons = searchButtons();
+    const currentIndex = buttons.indexOf(currentButton);
+
+    if (event.key === "ArrowDown") {
+      event.preventDefault();
+      setActiveResult(currentIndex + 1 >= buttons.length ? 0 : currentIndex + 1);
+    } else if (event.key === "ArrowUp") {
+      event.preventDefault();
+      setActiveResult(currentIndex - 1 < 0 ? buttons.length - 1 : currentIndex - 1);
+    } else if (event.key === "Escape") {
+      event.preventDefault();
+      hideResults();
+      if (searchInput) searchInput.focus();
+    }
+  });
+}
+
+document.addEventListener("click", function (event) {
+  const destination = event.target.closest("[data-ir]");
+  if (destination) {
+    openGuide(destination.dataset.ir, destination.dataset.passo);
     return;
   }
-  if (res && !res.hidden && !res.contains(event.target) && event.target !== campo) esconderResultados();
+
+  if (results && !results.hidden && !results.contains(event.target) && event.target !== searchInput) {
+    hideResults();
+  }
 });
