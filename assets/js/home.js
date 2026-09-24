@@ -1,3 +1,5 @@
+(function () {
+"use strict";
 const catalog = Array.isArray(window.AGA_MANUALS) ? window.AGA_MANUALS : [];
 const routes = Object.fromEntries(catalog.map(function (item) { return [item.key, item.href]; }));
 const guideData = new Map();
@@ -330,3 +332,5 @@ document.addEventListener("click", function (event) {
     hideResults();
   }
 });
+
+})();
