@@ -12,7 +12,7 @@ editorialStylesheet.rel = "stylesheet";
 editorialStylesheet.href = "assets/css/editorial.css";
 document.head.append(editorialStylesheet);
 
-if (body.dataset.page && body.dataset.page !== "home") {
+if (body.dataset.page && body.dataset.page !== "home" && !body.classList.contains("manual-v3")) {
   const guideEditorialScript = document.createElement("script");
   guideEditorialScript.src = "assets/js/guide-editorial.js";
   guideEditorialScript.defer = true;
