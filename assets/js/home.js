@@ -47,7 +47,7 @@ function iconMarkup(icon) {
 }
 
 function renderCards() {
-  if (!cards) return;
+  if (!cards || !catalog.length) return;
 
   cards.innerHTML = catalog.map(function (item) {
     const data = guideData.get(item.key);
