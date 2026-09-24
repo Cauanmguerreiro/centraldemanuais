@@ -6,6 +6,8 @@ Central estática de apoio ao painel Agafarma.
 
 - `index.html`: busca e acesso aos guias.
 - `campanhas.html`: campanhas de desconto.
+- `clube-v3.html`: manual interativo do Backoffice V3 (segmentos e campanhas segmentadas).
+- `midia/clube-v3/`: 15 capturas do novo fluxo.
 - `produtos.html`: cadastro de novos produtos.
 - `lojas.html`: cadastro de loja e integração.
 - `assets/css/styles.css`: identidade visual, barra lateral e responsividade.
