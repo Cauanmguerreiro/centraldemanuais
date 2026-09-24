@@ -309,13 +309,13 @@ body{
 .secao h2{font-size:27px;letter-spacing:-.035em}
 .secao p.desc{margin-bottom:23px}
 .cards{
-  grid-template-columns:repeat(12,minmax(0,1fr));
-  grid-template-rows:auto auto;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  grid-template-rows:auto;
   gap:12px;
 }
 .card{
   --card-accent:var(--editorial-blue);
-  min-height:0;
+  min-height:350px;
   padding:28px 28px 24px;
   border:1px solid var(--editorial-line-strong);
   border-radius:2px;
@@ -323,10 +323,9 @@ body{
   box-shadow:none;
   transform:none;
 }
-.card:nth-child(1){grid-column:span 7;grid-row:span 2;min-height:510px}
-.card:nth-child(2),.card:nth-child(3){grid-column:span 5;min-height:249px}
 .card.amar{--card-accent:var(--editorial-yellow)}
 .card.verde{--card-accent:var(--editorial-blue)}
+.card.v3-card{--card-accent:#58a7cf}
 .card::before{
   left:0;
   top:0;
@@ -344,9 +343,10 @@ body{
   font-weight:800;
   letter-spacing:.12em;
 }
-.card:nth-child(1)::after{content:"01 / CAMPANHAS"}
-.card:nth-child(2)::after{content:"02 / PRODUTOS"}
-.card:nth-child(3)::after{content:"03 / LOJAS"}
+.card:nth-child(1)::after{content:"01 / CLUBE V3"}
+.card:nth-child(2)::after{content:"02 / CAMPANHAS"}
+.card:nth-child(3)::after{content:"03 / PRODUTOS"}
+.card:nth-child(4)::after{content:"04 / LOJAS"}
 .card:hover{
   border-color:#8fa3ae;
   box-shadow:0 10px 24px rgba(8,40,61,.07);
@@ -355,15 +355,13 @@ body{
 .card .ico{
   width:40px;
   height:40px;
-  margin:6px 0 40px 8px;
+  margin:6px 0 26px 8px;
   border:0;
   border-radius:0;
   color:var(--editorial-blue);
 }
-.card.amar .ico,.card.verde .ico{color:var(--editorial-blue)}
-.card:nth-child(2) .ico,.card:nth-child(3) .ico{margin-bottom:18px}
-.card h3{max-width:15ch;margin-left:8px;font-size:24px}
-.card:nth-child(2) h3,.card:nth-child(3) h3{font-size:20px}
+.card.amar .ico,.card.verde .ico,.card.v3-card .ico{color:var(--editorial-blue)}
+.card h3{max-width:18ch;margin-left:8px;font-size:22px}
 .card p,.card ul,.card .pe{margin-left:8px}
 .card li::before{background:var(--editorial-blue)}
 .card .pe{border-top-color:var(--editorial-line)}

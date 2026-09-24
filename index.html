@@ -9,10 +9,10 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/styles.css">
-  <script src="assets/js/catalog.js" defer></script>
-  <script src="assets/js/shell.js" defer></script>
-  <script src="assets/js/home.js" defer></script>
+  <link rel="stylesheet" href="assets/css/styles.css?v=20260924-3">
+  <script src="assets/js/catalog.js?v=20260924-3" defer></script>
+  <script src="assets/js/shell.js?v=20260924-3" defer></script>
+  <script src="assets/js/home.js?v=20260924-3" defer></script>
 </head>
 <body data-page="home">
 <div class="faixa" aria-hidden="true"><i></i><i></i></div>
@@ -58,7 +58,36 @@
   <div class="secao">
     <h2>Guias</h2>
     <p class="desc">O passo a passo completo de cada processo, do começo ao fim.</p>
-    <div class="cards" id="guide-cards" aria-live="polite"></div>
+    <div class="cards" id="guide-cards" aria-live="polite">
+      <a class="card v3-card" href="clube-v3.html" data-guide="clube-v3">
+        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/><path d="M12 2v3M22 12h-3M12 22v-3M2 12h3"/></svg></span>
+        <h3>Clube Agafarma V3</h3>
+        <p>Segmentos de clientes e campanhas segmentadas, da primeira regra à publicação.</p>
+        <ul><li>Como criar e publicar um segmento</li><li>Regras de perfil e histórico de compras</li><li>Como escolher público, produtos e preços</li><li>Lojas, revisão e acompanhamento</li></ul>
+        <span class="pe"><span class="qtd">19 etapas</span><span class="abrir">Abrir guia</span></span>
+      </a>
+      <a class="card" href="campanhas.html" data-guide="campanhas">
+        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11v2a1 1 0 0 0 1 1h2l4 4V6L6 10H4a1 1 0 0 0-1 1Z"/><path d="M14 8.5a4 4 0 0 1 0 7"/><path d="M17 5.5a8 8 0 0 1 0 13"/></svg></span>
+        <h3>Campanhas de Desconto</h3>
+        <p>Criação, seleção de lojas, importação de EANs e publicação de campanhas.</p>
+        <ul><li>Como criar uma nova campanha de desconto</li><li>Como escolher entre EAN, classificação hierárquica e marca</li><li>Como definir o preço da campanha</li><li>Como revisar e publicar com segurança</li></ul>
+        <span class="pe"><span class="qtd">19 etapas</span><span class="abrir">Abrir guia</span></span>
+      </a>
+      <a class="card amar" href="produtos.html" data-guide="produtos">
+        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4 7v10l8 4 8-4V7Z"/><path d="M4 7l8 4 8-4"/><path d="M12 11v10"/></svg></span>
+        <h3>Cadastro de Novos Produtos</h3>
+        <p>Do cadastro do EAN à conferência final, com validações para evitar duplicidade.</p>
+        <ul><li>Como saber se o produto já está cadastrado</li><li>Onde informar nome e EAN</li><li>Como escolher a linha do produto</li><li>Como classificar e validar o cadastro</li></ul>
+        <span class="pe"><span class="qtd">12 etapas</span><span class="abrir">Abrir guia</span></span>
+      </a>
+      <a class="card verde" href="lojas.html" data-guide="lojas">
+        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l2-5h14l2 5"/><path d="M5 13v8h14v-8"/><path d="M9 21v-6h6v6"/><path d="M3 9a3 3 0 0 0 6 0 3 3 0 0 0 6 0 3 3 0 0 0 6 0"/></svg></span>
+        <h3>Cadastro de Loja</h3>
+        <p>Da criação da unidade à geração e aplicação das credenciais de integração.</p>
+        <ul><li>Onde cadastrar uma nova unidade</li><li>Quais dados preencher na loja</li><li>Como gerar as credenciais da loja</li><li>Como aplicar a credencial no Trier</li></ul>
+        <span class="pe"><span class="qtd">10 etapas</span><span class="abrir">Abrir guia</span></span>
+      </a>
+    </div>
   </div>
 </section>
 <footer class="pe-pg"><div>

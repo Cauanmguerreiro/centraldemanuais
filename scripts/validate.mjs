@@ -34,7 +34,12 @@ for (const page of pages) {
     if (!exists(ref)) errors.push(page + ": referência local ausente: " + ref);
   });
 
-  if (page === "index.html") continue;
+  if (page === "index.html") {
+    const cardCount = (html.match(/<a class=["']card\b/g) || []).length;
+    if (cardCount !== 4) errors.push("index.html: esperado fallback estático com 4 cards, encontrado " + cardCount);
+    if (/id=["']guide-cards["'][^>]*>\s*<\/div>/.test(html)) errors.push("index.html: catálogo não pode depender apenas de JavaScript");
+    continue;
+  }
 
   const match = html.match(/<script type=["']application\/json["'] id=["']manual-data["']>([\s\S]*?)<\/script>/);
   if (!match) {
