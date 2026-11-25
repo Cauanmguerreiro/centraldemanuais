@@ -59,5 +59,20 @@ window.AGA_MANUALS = [
     ],
     accent: "verde",
     icon: "store"
+  },
+  {
+    key: "trade",
+    href: "trade.html",
+    navLabel: "Ações de Trade",
+    title: "Ações de Trade",
+    description: "Cadastro e publicação de ações de trade no Backoffice V3, até a conferência no Venda Mais.",
+    bullets: [
+      "Como criar uma ação e anexar o planograma",
+      "Como adicionar produtos com frentes e fundo",
+      "Como escolher lojas e definir comprovações",
+      "Como publicar e conferir na loja"
+    ],
+    accent: "amar",
+    icon: "trade"
   }
 ];

@@ -3,7 +3,7 @@ import path from "node:path";
 import vm from "node:vm";
 
 const root = process.cwd();
-const pages = ["index.html", "clube-v3.html", "campanhas.html", "produtos.html", "lojas.html"];
+const pages = ["index.html", "clube-v3.html", "campanhas.html", "produtos.html", "lojas.html", "trade.html"];
 const errors = [];
 
 const exists = file => fs.existsSync(path.join(root, file));
@@ -36,7 +36,7 @@ for (const page of pages) {
 
   if (page === "index.html") {
     const cardCount = (html.match(/<a class=["']card\b/g) || []).length;
-    if (cardCount !== 4) errors.push("index.html: esperado fallback estático com 4 cards, encontrado " + cardCount);
+    if (cardCount !== 5) errors.push("index.html: esperado fallback estático com 5 cards, encontrado " + cardCount);
     if (/id=["']guide-cards["'][^>]*>\s*<\/div>/.test(html)) errors.push("index.html: catálogo não pode depender apenas de JavaScript");
     continue;
   }
