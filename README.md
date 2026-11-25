@@ -9,6 +9,7 @@ Central estática de apoio ao painel Agafarma.
 - `clube-v3.html`: segmentos e campanhas segmentadas do Clube V3.
 - `produtos.html`: cadastro de novos produtos.
 - `lojas.html`: cadastro de loja e integração.
+- `trade.html`: cadastro e publicação de ações de Trade (Venda Mais).
 - `assets/js/catalog.js`: catálogo único dos manuais; define ordem, rótulos e cards.
 - `assets/js/shell.js`: navegação global, sidebar responsiva e acionamento do I&D.
 - `assets/js/home.js`: monta os cards e cria a busca automaticamente a partir do `manual-data` de cada manual.
